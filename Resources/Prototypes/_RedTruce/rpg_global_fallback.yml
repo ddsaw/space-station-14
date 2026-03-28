@@ -1,0 +1,32 @@
+- type: rpgGlobalFallback
+  id: RedTruceRpgGlobalFallback
+  stats:
+    Strength:
+      baseline: 10
+      current: 10
+    Agility:
+      baseline: 10
+      current: 10
+    Body:
+      baseline: 10
+      current: 10
+    Mind:
+      baseline: 10
+      current: 10
+    Willpower:
+      baseline: 10
+      current: 10
+  skillCategories:
+    Melee:
+      baseline: 0
+      current: 0
+    Science:
+      baseline: 0
+      current: 0
+  skillSpecializations:
+    Swords:
+      baseline: 0
+      current: 0
+    Polearms:
+      baseline: 0
+      current: 0
