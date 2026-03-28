@@ -1,4 +1,4 @@
-using Content.Shared._RedTruce.CharacterInfo;
+using Content.Shared._RedTruce.Rpg;
 using Content.Shared.Objectives;
 using Robust.Shared.Serialization;
 
@@ -22,19 +22,19 @@ public sealed class CharacterInfoEvent : EntityEventArgs
     public readonly string JobTitle;
     public readonly Dictionary<string, List<ObjectiveInfo>> Objectives;
     public readonly string? Briefing;
-    public readonly CharacterStatsData Stats;
+    public readonly RpgCharacterSheetData RpgSheet;
 
     public CharacterInfoEvent(
         NetEntity netEntity,
         string jobTitle,
         Dictionary<string, List<ObjectiveInfo>> objectives,
         string? briefing,
-        CharacterStatsData stats)
+        RpgCharacterSheetData rpgSheet)
     {
         NetEntity = netEntity;
         JobTitle = jobTitle;
         Objectives = objectives;
         Briefing = briefing;
-        Stats = stats;
+        RpgSheet = rpgSheet;
     }
 }

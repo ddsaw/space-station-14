@@ -1,4 +1,4 @@
-using Content.Shared._RedTruce.CharacterInfo;
+using Content.Shared._RedTruce.Rpg;
 using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Robust.Client.Player;
@@ -33,7 +33,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     private void OnCharacterInfoEvent(CharacterInfoEvent msg, EntitySessionEventArgs args)
     {
         var entity = GetEntity(msg.NetEntity);
-        var data = new CharacterData(entity, msg.JobTitle, msg.Objectives, msg.Briefing, Name(entity), msg.Stats);
+        var data = new CharacterData(entity, msg.JobTitle, msg.Objectives, msg.Briefing, Name(entity), msg.RpgSheet);
 
         OnCharacterUpdate?.Invoke(data);
     }
@@ -51,7 +51,7 @@ public sealed class CharacterInfoSystem : EntitySystem
         Dictionary<string, List<ObjectiveInfo>> Objectives,
         string? Briefing,
         string EntityName,
-        CharacterStatsData Stats
+        RpgCharacterSheetData RpgSheet
     );
 
     /// <summary>

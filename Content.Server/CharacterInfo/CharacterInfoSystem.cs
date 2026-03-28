@@ -1,7 +1,7 @@
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
-using Content.Shared._RedTruce.CharacterInfo;
+using Content.Shared._RedTruce.Rpg;
 using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
@@ -15,6 +15,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
+    [Dependency] private readonly SharedRpgStatsSystem _rpgStats = default!;
 
     public override void Initialize()
     {
@@ -57,15 +58,8 @@ public sealed class CharacterInfoSystem : EntitySystem
             briefing = _roles.MindGetBriefing(mindId);
         }
 
-        var stats = EntityManager.TryGetComponent(entity, out CharacterStatsComponent? statsComp)
-            ? new CharacterStatsData(
-                statsComp.Strength,
-                statsComp.Agility,
-                statsComp.Body,
-                statsComp.Mind,
-                statsComp.Willpower)
-            : default;
+        var rpgSheet = _rpgStats.BuildCharacterSheet(entity);
 
-        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing, stats), args.SenderSession);
+        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing, rpgSheet), args.SenderSession);
     }
 }

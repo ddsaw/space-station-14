@@ -173,12 +173,38 @@
   save: false
   components:
   - type: Hunger
-  - type: CharacterStats
-    strength: 12
-    agility: 14
-    body: 11
-    mind: 15
-    willpower: 9
+  - type: RpgStats
+    stats:
+      Strength:
+        baseline: 12
+        current: 12
+      Agility:
+        baseline: 14
+        current: 14
+      Body:
+        baseline: 11
+        current: 11
+      Mind:
+        baseline: 15
+        current: 15
+      Willpower:
+        baseline: 9
+        current: 9
+  - type: RpgSkills
+    categories:
+      Melee:
+        baseline: 1
+        current: 1
+      Science:
+        baseline: 0
+        current: 0
+    specializations:
+      Swords:
+        baseline: 1
+        current: 1
+      Polearms:
+        baseline: 0
+        current: 0
   - type: Thirst
   - type: Barotrauma
     damage:
