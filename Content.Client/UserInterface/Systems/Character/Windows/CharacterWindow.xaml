@@ -15,6 +15,29 @@
                     <Label Name="SubText" VerticalAlignment="Top" StyleClasses="LabelSubText" Access="Public"/>
                 </BoxContainer>
             </BoxContainer>
+            <Label Name="StatsHeader" Access="Public" Text="{Loc 'character-stats-header'}" HorizontalAlignment="Center" StyleClasses="LabelHeading" Margin="0 0 0 4"/>
+            <BoxContainer Orientation="Vertical" Name="StatsContainer" Access="Public" Margin="8 0 8 8">
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'character-stats-strength'}" MinWidth="120"/>
+                    <Label Name="StrengthValue" Access="Public"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'character-stats-agility'}" MinWidth="120"/>
+                    <Label Name="AgilityValue" Access="Public"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'character-stats-body'}" MinWidth="120"/>
+                    <Label Name="BodyValue" Access="Public"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'character-stats-mind'}" MinWidth="120"/>
+                    <Label Name="MindValue" Access="Public"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'character-stats-willpower'}" MinWidth="120"/>
+                    <Label Name="WillpowerValue" Access="Public"/>
+                </BoxContainer>
+            </BoxContainer>
             <Label Name="ObjectivesLabel" Access="Public" Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center"/>
             <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public"/>
             <cc:Placeholder Name="RolePlaceholder" Access="Public" PlaceholderText="{Loc 'character-info-roles-antagonist-text'}"/>

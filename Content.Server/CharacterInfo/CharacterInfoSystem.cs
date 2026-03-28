@@ -1,6 +1,7 @@
-﻿using Content.Server.Mind;
+using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
+using Content.Shared._RedTruce.CharacterInfo;
 using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
@@ -56,6 +57,15 @@ public sealed class CharacterInfoSystem : EntitySystem
             briefing = _roles.MindGetBriefing(mindId);
         }
 
-        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing), args.SenderSession);
+        var stats = EntityManager.TryGetComponent(entity, out CharacterStatsComponent? statsComp)
+            ? new CharacterStatsData(
+                statsComp.Strength,
+                statsComp.Agility,
+                statsComp.Body,
+                statsComp.Mind,
+                statsComp.Willpower)
+            : default;
+
+        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing, stats), args.SenderSession);
     }
 }

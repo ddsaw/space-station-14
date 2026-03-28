@@ -130,7 +130,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             return;
         }
 
-        var (entity, job, objectives, briefing, entityName) = data;
+        var (entity, job, objectives, briefing, entityName, stats) = data;
 
         _window.SpriteView.SetEntity(entity);
 
@@ -138,6 +138,11 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
         _window.NameLabel.Text = entityName;
         _window.SubText.Text = job;
+        _window.StrengthValue.Text = stats.Strength.ToString();
+        _window.AgilityValue.Text = stats.Agility.ToString();
+        _window.BodyValue.Text = stats.Body.ToString();
+        _window.MindValue.Text = stats.Mind.ToString();
+        _window.WillpowerValue.Text = stats.Willpower.ToString();
         _window.Objectives.RemoveAllChildren();
         _window.ObjectivesLabel.Visible = objectives.Any();
 

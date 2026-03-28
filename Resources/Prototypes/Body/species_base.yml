@@ -173,6 +173,12 @@
   save: false
   components:
   - type: Hunger
+  - type: CharacterStats
+    strength: 12
+    agility: 14
+    body: 11
+    mind: 15
+    willpower: 9
   - type: Thirst
   - type: Barotrauma
     damage:
