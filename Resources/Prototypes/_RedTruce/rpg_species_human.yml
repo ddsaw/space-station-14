@@ -1,0 +1,33 @@
+- type: rpgSpeciesStatsDefaults
+  id: Human
+  species: Human
+  stats:
+    Strength:
+      baseline: 12
+      current: 12
+    Agility:
+      baseline: 14
+      current: 14
+    Body:
+      baseline: 11
+      current: 11
+    Mind:
+      baseline: 15
+      current: 15
+    Willpower:
+      baseline: 9
+      current: 9
+  skillCategories:
+    Melee:
+      baseline: 1
+      current: 1
+    Science:
+      baseline: 0
+      current: 0
+  skillSpecializations:
+    Swords:
+      baseline: 1
+      current: 1
+    Polearms:
+      baseline: 0
+      current: 0

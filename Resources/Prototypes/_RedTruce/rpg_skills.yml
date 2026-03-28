@@ -1,0 +1,23 @@
+- type: rpgSkillCategory
+  id: Melee
+  ordering: 0
+  nameLocId: rpg-skill-cat-melee
+  linkedStat: Agility
+
+- type: rpgSkillCategory
+  id: Science
+  ordering: 1
+  nameLocId: rpg-skill-cat-science
+  linkedStat: Mind
+
+- type: rpgSkillSpecialization
+  id: Swords
+  ordering: 0
+  nameLocId: rpg-skill-spec-swords
+  category: Melee
+
+- type: rpgSkillSpecialization
+  id: Polearms
+  ordering: 1
+  nameLocId: rpg-skill-spec-polearms
+  category: Melee
