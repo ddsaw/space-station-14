@@ -1,0 +1,24 @@
+- type: rpgStat
+  id: Strength
+  ordering: 0
+  nameLocId: rpg-stat-strength
+
+- type: rpgStat
+  id: Agility
+  ordering: 1
+  nameLocId: rpg-stat-agility
+
+- type: rpgStat
+  id: Body
+  ordering: 2
+  nameLocId: rpg-stat-body
+
+- type: rpgStat
+  id: Mind
+  ordering: 3
+  nameLocId: rpg-stat-mind
+
+- type: rpgStat
+  id: Willpower
+  ordering: 4
+  nameLocId: rpg-stat-willpower
