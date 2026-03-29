@@ -284,7 +284,9 @@ Security: only the session whose **attached entity** matches the requested net e
 | Feature | Suggested approach |
 |---------|---------------------|
 | **Curses / buffs on stats** | Systems update only `RTStatValue.Current` (or skills’ `Current`). Resolver and sheet already read `Current` for effective column and dice terms. |
-| **Dice engine** | Call `TryGetStat` / `GetSkillDiceContribution` from server-side roll logic; avoid duplicating fallback rules. |
+| **Dice engine** | Call `TryGetStat` / `GetSkillDiceContribution` from server-side roll logic; avoid duplicating fallback rules. MVP resolver lives in `Content.Shared/_RedTruce/Rpg/Dice/RTDicePoolResolver.cs`. |
+| **Dicetricks (deferred)** | Placeholder contract exists now (`RTDiceTrickSpec`, `RTDiceTrickKind`) via `Content.Shared/_RedTruce/Rpg/Dice/RTDiceTrickSpec.cs`. `RTDiceRollSpec.DiceTricks` is present but ignored in MVP. Implement ordered trick execution at the explicit TODO hook in `RTDicePoolResolver.Roll`. |
+| **Pre-roll situational gather (deferred)** | Gather ultra short-lived context right before roll (darkness, cover posture, transient stance) and adjust pool/TN. Explicit TODO hook exists in `Content.Server/_RedTruce/Commands/RedTruceRpgRollSkillCommand.cs` right before `RTDiceRollSpec` creation. |
 | **Character creation** | Write baselines (and initial `Current`) onto a new mob’s components; same prototypes and resolver. |
 | **More species** | Add `rtSpeciesStatsDefaults` prototypes with correct **`species`** field for each `SpeciesPrototype`. |
 | **Networking components** | Only if you need live UI outside the character menu without a new request; would require `[NetworkedComponent]` and sync rules. |
@@ -300,12 +302,15 @@ Security: only the session whose **attached entity** matches the requested net e
 | Resolver + sheet build | `Content.Shared/_RedTruce/Rpg/SharedRTStatsSystem.cs` |
 | Sheet DTOs | `Content.Shared/_RedTruce/Rpg/RTCharacterSheetData.cs` |
 | Dice breakdown struct | `Content.Shared/_RedTruce/Rpg/RTStatDiceBreakdown.cs` |
+| Dice roll spec/result/resolver | `Content.Shared/_RedTruce/Rpg/Dice/` |
+| Dicetrick placeholder contract | `Content.Shared/_RedTruce/Rpg/Dice/RTDiceTrickSpec.cs` |
 | Character info contract | `Content.Shared/CharacterInfo/SharedCharacterInfoSystem.cs` |
 | Server CI + sheet | `Content.Server/CharacterInfo/CharacterInfoSystem.cs` |
 | Client CI + `CharacterData` | `Content.Client/CharacterInfo/CharacterInfoSystem.cs` |
 | Character window + controller | `Content.Client/UserInterface/Systems/Character/` |
 | Sheet control | `Content.Client/_RedTruce/Character/Controls/RTCharacterSheetControl.cs` |
 | Debug command | `Content.Server/_RedTruce/Commands/RedTruceRpgRandomizeCommand.cs` |
+| Skill roll debug command + situational hook | `Content.Server/_RedTruce/Commands/RedTruceRpgRollSkillCommand.cs` |
 
 ---
 
