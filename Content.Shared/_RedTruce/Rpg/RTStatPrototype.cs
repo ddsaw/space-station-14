@@ -1,9 +1,9 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._RedTruce.Rpg;
+namespace Content.Shared._RedTruce;
 
-[Prototype("rpgStat")]
-public sealed partial class RpgStatPrototype : IPrototype
+[Prototype("rtStat")]
+public sealed partial class RTStatPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
