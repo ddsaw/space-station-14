@@ -1,9 +1,9 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._RedTruce.Rpg;
+namespace Content.Shared._RedTruce;
 
-[Prototype("rpgSkillCategory")]
-public sealed partial class RpgSkillCategoryPrototype : IPrototype
+[Prototype("rtSkillCategory")]
+public sealed partial class RTSkillCategoryPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
@@ -15,5 +15,5 @@ public sealed partial class RpgSkillCategoryPrototype : IPrototype
     public string NameLocId { get; private set; } = default!;
 
     [DataField(required: true)]
-    public ProtoId<RpgStatPrototype> LinkedStat { get; private set; }
+    public ProtoId<RTStatPrototype> LinkedStat { get; private set; }
 }

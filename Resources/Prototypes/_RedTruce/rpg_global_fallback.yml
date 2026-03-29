@@ -1,32 +1,194 @@
-- type: rpgGlobalFallback
-  id: RedTruceRpgGlobalFallback
+- type: rtGlobalFallback
+  id: RTGlobalFallback
   stats:
-    Strength:
+    RTStrength:
       baseline: 10
       current: 10
-    Agility:
+    RTAgility:
       baseline: 10
       current: 10
-    Body:
+    RTBody:
       baseline: 10
       current: 10
-    Mind:
+    RTMind:
       baseline: 10
       current: 10
-    Willpower:
+    RTWillpower:
       baseline: 10
       current: 10
   skillCategories:
-    Melee:
+    RTMelee:
       baseline: 0
       current: 0
-    Science:
+    RTRanged:
+      baseline: 0
+      current: 0
+    RTStealth:
+      baseline: 0
+      current: 0
+    RTPiloting:
+      baseline: 0
+      current: 0
+    RTAcrobatics:
+      baseline: 0
+      current: 0
+    RTScience:
+      baseline: 0
+      current: 0
+    RTMedicine:
+      baseline: 0
+      current: 0
+    RTEngineering:
+      baseline: 0
+      current: 0
+    RTComputing:
+      baseline: 0
+      current: 0
+    RTTactics:
+      baseline: 0
+      current: 0
+    RTPerception:
+      baseline: 0
+      current: 0
+    RTAthletics:
+      baseline: 0
+      current: 0
+    RTHeavyLabor:
+      baseline: 0
+      current: 0
+    RTFortitude:
+      baseline: 0
+      current: 0
+    RTEndurance:
+      baseline: 0
+      current: 0
+    RTResolve:
+      baseline: 0
+      current: 0
+    RTComposure:
       baseline: 0
       current: 0
   skillSpecializations:
-    Swords:
+    RTSwords:
       baseline: 0
       current: 0
-    Polearms:
+    RTPolearms:
+      baseline: 0
+      current: 0
+    RTUnarmed:
+      baseline: 0
+      current: 0
+    RTPistols:
+      baseline: 0
+      current: 0
+    RTRifles:
+      baseline: 0
+      current: 0
+    RTHeavyWeapons:
+      baseline: 0
+      current: 0
+    RTSneaking:
+      baseline: 0
+      current: 0
+    RTDisguise:
+      baseline: 0
+      current: 0
+    RTShuttles:
+      baseline: 0
+      current: 0
+    RTSmallCraft:
+      baseline: 0
+      current: 0
+    RTParkour:
+      baseline: 0
+      current: 0
+    RTDodging:
+      baseline: 0
+      current: 0
+    RTXenobiology:
+      baseline: 0
+      current: 0
+    RTChemistry:
+      baseline: 0
+      current: 0
+    RTAnomalies:
+      baseline: 0
+      current: 0
+    RTSurgery:
+      baseline: 0
+      current: 0
+    RTFirstAid:
+      baseline: 0
+      current: 0
+    RTDiagnostics:
+      baseline: 0
+      current: 0
+    RTMechanical:
+      baseline: 0
+      current: 0
+    RTElectrical:
+      baseline: 0
+      current: 0
+    RTAtmospherics:
+      baseline: 0
+      current: 0
+    RTHacking:
+      baseline: 0
+      current: 0
+    RTNetworking:
+      baseline: 0
+      current: 0
+    RTRobotics:
+      baseline: 0
+      current: 0
+    RTSmallUnit:
+      baseline: 0
+      current: 0
+    RTShipboard:
+      baseline: 0
+      current: 0
+    RTSearch:
+      baseline: 0
+      current: 0
+    RTTracking:
+      baseline: 0
+      current: 0
+    RTInsight:
+      baseline: 0
+      current: 0
+    RTClimbing:
+      baseline: 0
+      current: 0
+    RTSwimming:
+      baseline: 0
+      current: 0
+    RTMining:
+      baseline: 0
+      current: 0
+    RTSalvaging:
+      baseline: 0
+      current: 0
+    RTPainResistance:
+      baseline: 0
+      current: 0
+    RTToxinTolerance:
+      baseline: 0
+      current: 0
+    RTLongMarch:
+      baseline: 0
+      current: 0
+    RTZeroGAdaptation:
+      baseline: 0
+      current: 0
+    RTMorale:
+      baseline: 0
+      current: 0
+    RTStressControl:
+      baseline: 0
+      current: 0
+    RTDeceptionSense:
+      baseline: 0
+      current: 0
+    RTInterrogation:
       baseline: 0
       current: 0

@@ -1,7 +1,7 @@
-namespace Content.Shared._RedTruce.Rpg;
+namespace Content.Shared._RedTruce;
 
 [DataDefinition]
-public readonly partial record struct RpgStatValue
+public readonly partial record struct RTStatValue
 {
     [DataField(required: true)]
     public int Baseline { get; init; }
