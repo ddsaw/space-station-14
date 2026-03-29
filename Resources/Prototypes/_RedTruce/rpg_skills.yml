@@ -1,23 +1,352 @@
-- type: rpgSkillCategory
-  id: Melee
-  ordering: 0
+# Linked Agility
+- type: rtSkillCategory
+  id: RTMelee
+  ordering: 10
   nameLocId: rpg-skill-cat-melee
-  linkedStat: Agility
+  linkedStat: RTAgility
 
-- type: rpgSkillCategory
-  id: Science
-  ordering: 1
-  nameLocId: rpg-skill-cat-science
-  linkedStat: Mind
-
-- type: rpgSkillSpecialization
-  id: Swords
+- type: rtSkillSpecialization
+  id: RTSwords
   ordering: 0
   nameLocId: rpg-skill-spec-swords
-  category: Melee
+  category: RTMelee
 
-- type: rpgSkillSpecialization
-  id: Polearms
+- type: rtSkillSpecialization
+  id: RTPolearms
   ordering: 1
   nameLocId: rpg-skill-spec-polearms
-  category: Melee
+  category: RTMelee
+
+- type: rtSkillSpecialization
+  id: RTUnarmed
+  ordering: 2
+  nameLocId: rpg-skill-spec-unarmed
+  category: RTMelee
+
+- type: rtSkillCategory
+  id: RTRanged
+  ordering: 11
+  nameLocId: rpg-skill-cat-ranged
+  linkedStat: RTAgility
+
+- type: rtSkillSpecialization
+  id: RTPistols
+  ordering: 0
+  nameLocId: rpg-skill-spec-pistols
+  category: RTRanged
+
+- type: rtSkillSpecialization
+  id: RTRifles
+  ordering: 1
+  nameLocId: rpg-skill-spec-rifles
+  category: RTRanged
+
+- type: rtSkillSpecialization
+  id: RTHeavyWeapons
+  ordering: 2
+  nameLocId: rpg-skill-spec-heavyweapons
+  category: RTRanged
+
+- type: rtSkillCategory
+  id: RTStealth
+  ordering: 12
+  nameLocId: rpg-skill-cat-stealth
+  linkedStat: RTAgility
+
+- type: rtSkillSpecialization
+  id: RTSneaking
+  ordering: 0
+  nameLocId: rpg-skill-spec-sneaking
+  category: RTStealth
+
+- type: rtSkillSpecialization
+  id: RTDisguise
+  ordering: 1
+  nameLocId: rpg-skill-spec-disguise
+  category: RTStealth
+
+- type: rtSkillCategory
+  id: RTPiloting
+  ordering: 13
+  nameLocId: rpg-skill-cat-piloting
+  linkedStat: RTAgility
+
+- type: rtSkillSpecialization
+  id: RTShuttles
+  ordering: 0
+  nameLocId: rpg-skill-spec-shuttles
+  category: RTPiloting
+
+- type: rtSkillSpecialization
+  id: RTSmallCraft
+  ordering: 1
+  nameLocId: rpg-skill-spec-smallcraft
+  category: RTPiloting
+
+- type: rtSkillCategory
+  id: RTAcrobatics
+  ordering: 14
+  nameLocId: rpg-skill-cat-acrobatics
+  linkedStat: RTAgility
+
+- type: rtSkillSpecialization
+  id: RTParkour
+  ordering: 0
+  nameLocId: rpg-skill-spec-parkour
+  category: RTAcrobatics
+
+- type: rtSkillSpecialization
+  id: RTDodging
+  ordering: 1
+  nameLocId: rpg-skill-spec-dodging
+  category: RTAcrobatics
+
+# Linked Mind
+- type: rtSkillCategory
+  id: RTScience
+  ordering: 20
+  nameLocId: rpg-skill-cat-science
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTXenobiology
+  ordering: 0
+  nameLocId: rpg-skill-spec-xenobiology
+  category: RTScience
+
+- type: rtSkillSpecialization
+  id: RTChemistry
+  ordering: 1
+  nameLocId: rpg-skill-spec-chemistry
+  category: RTScience
+
+- type: rtSkillSpecialization
+  id: RTAnomalies
+  ordering: 2
+  nameLocId: rpg-skill-spec-anomalies
+  category: RTScience
+
+- type: rtSkillCategory
+  id: RTMedicine
+  ordering: 21
+  nameLocId: rpg-skill-cat-medicine
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTSurgery
+  ordering: 0
+  nameLocId: rpg-skill-spec-surgery
+  category: RTMedicine
+
+- type: rtSkillSpecialization
+  id: RTFirstAid
+  ordering: 1
+  nameLocId: rpg-skill-spec-firstaid
+  category: RTMedicine
+
+- type: rtSkillSpecialization
+  id: RTDiagnostics
+  ordering: 2
+  nameLocId: rpg-skill-spec-diagnostics
+  category: RTMedicine
+
+- type: rtSkillCategory
+  id: RTEngineering
+  ordering: 22
+  nameLocId: rpg-skill-cat-engineering
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTMechanical
+  ordering: 0
+  nameLocId: rpg-skill-spec-mechanical
+  category: RTEngineering
+
+- type: rtSkillSpecialization
+  id: RTElectrical
+  ordering: 1
+  nameLocId: rpg-skill-spec-electrical
+  category: RTEngineering
+
+- type: rtSkillSpecialization
+  id: RTAtmospherics
+  ordering: 2
+  nameLocId: rpg-skill-spec-atmospherics
+  category: RTEngineering
+
+- type: rtSkillCategory
+  id: RTComputing
+  ordering: 23
+  nameLocId: rpg-skill-cat-computing
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTHacking
+  ordering: 0
+  nameLocId: rpg-skill-spec-hacking
+  category: RTComputing
+
+- type: rtSkillSpecialization
+  id: RTNetworking
+  ordering: 1
+  nameLocId: rpg-skill-spec-networking
+  category: RTComputing
+
+- type: rtSkillSpecialization
+  id: RTRobotics
+  ordering: 2
+  nameLocId: rpg-skill-spec-robotics
+  category: RTComputing
+
+- type: rtSkillCategory
+  id: RTTactics
+  ordering: 24
+  nameLocId: rpg-skill-cat-tactics
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTSmallUnit
+  ordering: 0
+  nameLocId: rpg-skill-spec-smallunit
+  category: RTTactics
+
+- type: rtSkillSpecialization
+  id: RTShipboard
+  ordering: 1
+  nameLocId: rpg-skill-spec-shipboard
+  category: RTTactics
+
+- type: rtSkillCategory
+  id: RTPerception
+  ordering: 25
+  nameLocId: rpg-skill-cat-perception
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTSearch
+  ordering: 0
+  nameLocId: rpg-skill-spec-search
+  category: RTPerception
+
+- type: rtSkillSpecialization
+  id: RTTracking
+  ordering: 1
+  nameLocId: rpg-skill-spec-tracking
+  category: RTPerception
+
+- type: rtSkillSpecialization
+  id: RTInsight
+  ordering: 2
+  nameLocId: rpg-skill-spec-insight
+  category: RTPerception
+
+# Linked Strength
+- type: rtSkillCategory
+  id: RTAthletics
+  ordering: 30
+  nameLocId: rpg-skill-cat-athletics
+  linkedStat: RTStrength
+
+- type: rtSkillSpecialization
+  id: RTClimbing
+  ordering: 0
+  nameLocId: rpg-skill-spec-climbing
+  category: RTAthletics
+
+- type: rtSkillSpecialization
+  id: RTSwimming
+  ordering: 1
+  nameLocId: rpg-skill-spec-swimming
+  category: RTAthletics
+
+- type: rtSkillCategory
+  id: RTHeavyLabor
+  ordering: 31
+  nameLocId: rpg-skill-cat-heavylabor
+  linkedStat: RTStrength
+
+- type: rtSkillSpecialization
+  id: RTMining
+  ordering: 0
+  nameLocId: rpg-skill-spec-mining
+  category: RTHeavyLabor
+
+- type: rtSkillSpecialization
+  id: RTSalvaging
+  ordering: 1
+  nameLocId: rpg-skill-spec-salvaging
+  category: RTHeavyLabor
+
+# Linked Body
+- type: rtSkillCategory
+  id: RTFortitude
+  ordering: 40
+  nameLocId: rpg-skill-cat-fortitude
+  linkedStat: RTBody
+
+- type: rtSkillSpecialization
+  id: RTPainResistance
+  ordering: 0
+  nameLocId: rpg-skill-spec-painresistance
+  category: RTFortitude
+
+- type: rtSkillSpecialization
+  id: RTToxinTolerance
+  ordering: 1
+  nameLocId: rpg-skill-spec-toxintolerance
+  category: RTFortitude
+
+- type: rtSkillCategory
+  id: RTEndurance
+  ordering: 41
+  nameLocId: rpg-skill-cat-endurance
+  linkedStat: RTBody
+
+- type: rtSkillSpecialization
+  id: RTLongMarch
+  ordering: 0
+  nameLocId: rpg-skill-spec-longmarch
+  category: RTEndurance
+
+- type: rtSkillSpecialization
+  id: RTZeroGAdaptation
+  ordering: 1
+  nameLocId: rpg-skill-spec-zerogadaptation
+  category: RTEndurance
+
+# Linked Willpower
+- type: rtSkillCategory
+  id: RTResolve
+  ordering: 50
+  nameLocId: rpg-skill-cat-resolve
+  linkedStat: RTWillpower
+
+- type: rtSkillSpecialization
+  id: RTMorale
+  ordering: 0
+  nameLocId: rpg-skill-spec-morale
+  category: RTResolve
+
+- type: rtSkillSpecialization
+  id: RTStressControl
+  ordering: 1
+  nameLocId: rpg-skill-spec-stresscontrol
+  category: RTResolve
+
+- type: rtSkillCategory
+  id: RTComposure
+  ordering: 51
+  nameLocId: rpg-skill-cat-composure
+  linkedStat: RTWillpower
+
+- type: rtSkillSpecialization
+  id: RTDeceptionSense
+  ordering: 0
+  nameLocId: rpg-skill-spec-deceptionsense
+  category: RTComposure
+
+- type: rtSkillSpecialization
+  id: RTInterrogation
+  ordering: 1
+  nameLocId: rpg-skill-spec-interrogation
+  category: RTComposure

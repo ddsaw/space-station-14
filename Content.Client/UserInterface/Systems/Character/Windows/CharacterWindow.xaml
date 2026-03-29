@@ -4,10 +4,10 @@
     xmlns:windows="clr-namespace:Content.Client.UserInterface.Systems.Character.Windows"
     xmlns:rt="clr-namespace:Content.Client._RedTruce.Character.Controls"
     Title="{Loc 'character-info-title'}"
-    MinWidth="480"
+    MinWidth="560"
     MinHeight="545">
-    <ScrollContainer>
-        <BoxContainer Orientation="Vertical">
+    <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
             <Label Name="RoleType" VerticalAlignment="Top" Margin="0 6 0 10" HorizontalAlignment="Center" StyleClasses="LabelHeading" Access="Public"/>
             <BoxContainer Orientation="Horizontal">
                 <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64"/>
@@ -16,7 +16,7 @@
                     <Label Name="SubText" VerticalAlignment="Top" StyleClasses="LabelSubText" Access="Public"/>
                 </BoxContainer>
             </BoxContainer>
-            <rt:RpgCharacterSheetControl Name="RpgSheet" Access="Public" Margin="8 0 8 8"/>
+            <rt:RTCharacterSheetControl Name="RTSheet" Access="Public" Margin="8 0 8 8" HorizontalExpand="True"/>
             <Label Name="ObjectivesLabel" Access="Public" Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center"/>
             <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public"/>
             <cc:Placeholder Name="RolePlaceholder" Access="Public" PlaceholderText="{Loc 'character-info-roles-antagonist-text'}"/>

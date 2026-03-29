@@ -173,38 +173,26 @@
   save: false
   components:
   - type: Hunger
-  - type: RpgStats
+  - type: RTStats
     stats:
-      Strength:
+      RTStrength:
         baseline: 12
         current: 12
-      Agility:
+      RTAgility:
         baseline: 14
         current: 14
-      Body:
+      RTBody:
         baseline: 11
         current: 11
-      Mind:
+      RTMind:
         baseline: 15
         current: 15
-      Willpower:
+      RTWillpower:
         baseline: 9
         current: 9
-  - type: RpgSkills
-    categories:
-      Melee:
-        baseline: 1
-        current: 1
-      Science:
-        baseline: 0
-        current: 0
-    specializations:
-      Swords:
-        baseline: 1
-        current: 1
-      Polearms:
-        baseline: 0
-        current: 0
+  - type: RTSkills
+    categories: {}
+    specializations: {}
   - type: Thirst
   - type: Barotrauma
     damage:

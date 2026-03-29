@@ -130,7 +130,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             return;
         }
 
-        var (entity, job, objectives, briefing, entityName, rpgSheet) = data;
+        var (entity, job, objectives, briefing, entityName, rtSheet) = data;
 
         _window.SpriteView.SetEntity(entity);
 
@@ -138,7 +138,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
         _window.NameLabel.Text = entityName;
         _window.SubText.Text = job;
-        _window.RpgSheet.SetData(rpgSheet);
+        _window.RTSheet.SetData(rtSheet);
         _window.Objectives.RemoveAllChildren();
         _window.ObjectivesLabel.Visible = objectives.Any();
 

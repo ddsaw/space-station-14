@@ -1,24 +1,24 @@
-- type: rpgStat
-  id: Strength
+- type: rtStat
+  id: RTStrength
   ordering: 0
   nameLocId: rpg-stat-strength
 
-- type: rpgStat
-  id: Agility
+- type: rtStat
+  id: RTAgility
   ordering: 1
   nameLocId: rpg-stat-agility
 
-- type: rpgStat
-  id: Body
+- type: rtStat
+  id: RTBody
   ordering: 2
   nameLocId: rpg-stat-body
 
-- type: rpgStat
-  id: Mind
+- type: rtStat
+  id: RTMind
   ordering: 3
   nameLocId: rpg-stat-mind
 
-- type: rpgStat
-  id: Willpower
+- type: rtStat
+  id: RTWillpower
   ordering: 4
   nameLocId: rpg-stat-willpower
