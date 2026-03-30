@@ -529,6 +529,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (hitEvent.Handled)
             return;
 
+        if (hitEvent.SuppressDamageTargets.Contains(target.Value))
+            return;
+
         var targets = new List<EntityUid>(1)
         {
             target.Value
@@ -702,6 +705,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
             RaiseLocalEvent(entity, attackedEvent);
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+
+            if (hitEvent.SuppressDamageTargets.Contains(entity))
+                continue;
 
             var damageResult = Damageable.ChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 

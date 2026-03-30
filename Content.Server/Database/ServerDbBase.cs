@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -205,9 +206,19 @@ namespace Content.Server.Database
 
         private Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
+            var isNewProfile = profile == null;
             profile ??= new Profile();
             var appearance = humanoid.Appearance;
             var dataNode = _serialization.WriteValue(appearance.Markings, alwaysWrite: true, notNullableOverride: true);
+
+            // Character UIDs are server authoritative. Existing rows keep their original UID.
+            profile.CharacterUid = isNewProfile
+                ? humanoid.CharacterUid == Guid.Empty
+                    ? Guid.NewGuid()
+                    : humanoid.CharacterUid
+                : profile.CharacterUid == Guid.Empty
+                    ? Guid.NewGuid()
+                    : profile.CharacterUid;
 
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;

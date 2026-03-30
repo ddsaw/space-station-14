@@ -60,6 +60,10 @@ namespace Content.Server.Database
                 .HasIndex(p => new {p.Slot, PrefsId = p.PreferenceId})
                 .IsUnique();
 
+            modelBuilder.Entity<Profile>()
+                .HasIndex(p => p.CharacterUid)
+                .IsUnique();
+
             modelBuilder.Entity<Antag>()
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.AntagName})
                 .IsUnique();
@@ -324,6 +328,7 @@ namespace Content.Server.Database
     public class Profile
     {
         public int Id { get; set; }
+        public Guid CharacterUid { get; set; }
         public int Slot { get; set; }
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;

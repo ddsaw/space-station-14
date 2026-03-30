@@ -68,6 +68,9 @@ namespace Content.Shared.Preferences
         [DataField]
         public string Name { get; set; } = "John Doe";
 
+        [DataField]
+        public Guid CharacterUid { get; set; } = Guid.NewGuid();
+
         /// <summary>
         /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.
         /// </summary>
@@ -124,6 +127,7 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode.SpawnAsOverflow;
 
         public HumanoidCharacterProfile(
+            Guid characterUid,
             string name,
             string flavortext,
             string species,
@@ -138,6 +142,7 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts)
         {
+            CharacterUid = characterUid;
             Name = name;
             FlavorText = flavortext;
             Species = species;
@@ -169,7 +174,8 @@ namespace Content.Shared.Preferences
 
         /// <summary>Copy constructor</summary>
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
-            : this(other.Name,
+            : this(other.CharacterUid,
+                other.Name,
                 other.FlavorText,
                 other.Species,
                 other.Age,
@@ -463,6 +469,7 @@ namespace Content.Shared.Preferences
         public bool MemberwiseEquals(HumanoidCharacterProfile other)
         {
             if (Name != other.Name) return false;
+            if (CharacterUid != other.CharacterUid) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
@@ -721,6 +728,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(_traitPreferences);
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
+            hashCode.Add(CharacterUid);
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
             hashCode.Add(Age);

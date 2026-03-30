@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Content.Server.Database;
 using Content.Server.Preferences.Managers;
@@ -105,6 +106,7 @@ namespace Content.IntegrationTests.Tests.Preferences
             var preferences = (ServerPreferencesManager)pair.Server.ResolveDependency<IServerPreferencesManager>();
             var prefs = await db.GetPlayerPreferencesAsync(username);
             var fetchedProfile = preferences.ConvertProfiles(prefs!.Profiles.Find(p => p.Slot == 0));
+            profile.CharacterUid = fetchedProfile.CharacterUid;
             Assert.That(fetchedProfile.MemberwiseEquals(profile));
 
             await pair.CleanReturnAsync();
@@ -122,6 +124,7 @@ namespace Content.IntegrationTests.Tests.Preferences
             await db.InitPrefsAsync(username, originalProfile);
             var prefs = await db.GetPlayerPreferencesAsync(username);
             var profile = preferences.ConvertProfiles(prefs!.Profiles.Find(p => p.Slot == slot));
+            originalProfile.CharacterUid = profile.CharacterUid;
             Assert.That(profile.MemberwiseEquals(originalProfile));
             await pair.CleanReturnAsync();
         }
@@ -139,6 +142,96 @@ namespace Content.IntegrationTests.Tests.Preferences
             await db.SaveCharacterSlotAsync(username, null, 1);
             var prefs = await db.GetPlayerPreferencesAsync(username);
             Assert.That(prefs!.Profiles, Has.Count.EqualTo(1));
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestCharacterUidGeneratedAndPersistent()
+        {
+            var pair = await PoolManager.GetServerClient();
+            var db = GetDb(pair.Server);
+            var username = NewUserId();
+
+            await db.InitPrefsAsync(username, CharlieCharlieson());
+            var prefs = await db.GetPlayerPreferencesAsync(username);
+            Assert.That(prefs, Is.Not.Null);
+
+            var slot0 = prefs!.Profiles.Single(p => p.Slot == 0);
+            Assert.That(slot0.CharacterUid, Is.Not.EqualTo(Guid.Empty));
+
+            var originalUid = slot0.CharacterUid;
+            await db.SaveCharacterSlotAsync(username, CharlieCharlieson(), 0);
+
+            var updatedPrefs = await db.GetPlayerPreferencesAsync(username);
+            var updatedSlot0 = updatedPrefs!.Profiles.Single(p => p.Slot == 0);
+            Assert.That(updatedSlot0.CharacterUid, Is.EqualTo(originalUid));
+
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestCharacterUidTamperResistantOnUpdate()
+        {
+            var pair = await PoolManager.GetServerClient();
+            var db = GetDb(pair.Server);
+            var username = NewUserId();
+
+            await db.InitPrefsAsync(username, CharlieCharlieson());
+            var prefs = await db.GetPlayerPreferencesAsync(username);
+            var existingUid = prefs!.Profiles.Single(p => p.Slot == 0).CharacterUid;
+
+            var forged = CharlieCharlieson();
+            forged.CharacterUid = Guid.NewGuid();
+            Assert.That(forged.CharacterUid, Is.Not.EqualTo(existingUid));
+
+            await db.SaveCharacterSlotAsync(username, forged, 0);
+            var updatedPrefs = await db.GetPlayerPreferencesAsync(username);
+            var updatedUid = updatedPrefs!.Profiles.Single(p => p.Slot == 0).CharacterUid;
+            Assert.That(updatedUid, Is.EqualTo(existingUid));
+
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestCharacterUidChangesAfterDeleteAndRecreate()
+        {
+            var pair = await PoolManager.GetServerClient();
+            var db = GetDb(pair.Server);
+            var username = NewUserId();
+
+            await db.InitPrefsAsync(username, CharlieCharlieson());
+            var initialPrefs = await db.GetPlayerPreferencesAsync(username);
+            var initialUid = initialPrefs!.Profiles.Single(p => p.Slot == 0).CharacterUid;
+
+            await db.SaveCharacterSlotAsync(username, null, 0);
+            await db.SaveCharacterSlotAsync(username, CharlieCharlieson(), 0);
+
+            var recreatedPrefs = await db.GetPlayerPreferencesAsync(username);
+            var recreatedUid = recreatedPrefs!.Profiles.Single(p => p.Slot == 0).CharacterUid;
+            Assert.That(recreatedUid, Is.Not.EqualTo(Guid.Empty));
+            Assert.That(recreatedUid, Is.Not.EqualTo(initialUid));
+
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestCharacterUidPreservedOnFirstInsertWhenProvided()
+        {
+            var pair = await PoolManager.GetServerClient();
+            var db = GetDb(pair.Server);
+            var username = NewUserId();
+
+            await db.InitPrefsAsync(username, CharlieCharlieson());
+
+            var expected = Guid.NewGuid();
+            var profile = CharlieCharlieson();
+            profile.CharacterUid = expected;
+
+            await db.SaveCharacterSlotAsync(username, profile, 1);
+            var prefs = await db.GetPlayerPreferencesAsync(username);
+            var slot1 = prefs!.Profiles.Single(p => p.Slot == 1);
+            Assert.That(slot1.CharacterUid, Is.EqualTo(expected));
+
             await pair.CleanReturnAsync();
         }
 

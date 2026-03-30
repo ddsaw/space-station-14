@@ -12,3 +12,7 @@ cmd-rpg-roll-skill-invalid-category = Unknown skill category id '{$category}'.
 cmd-rpg-roll-skill-invalid-spec = Unknown skill specialization id '{$spec}'.
 cmd-rpg-roll-skill-missing = Your mob has no RTStats or RTSkills component (not a RedTruce RPG mob).
 cmd-rpg-roll-skill-result = Rolled category={$category} spec={$spec} pool={$pool} tn={$tn} -> successes={$successes} | faces=[{$faces}]
+
+rt-melee-roll-outcome-parried = PARRIED
+rt-melee-roll-outcome-hit = HIT
+rt-melee-roll-debug = [RT] melee {$attackerPool} vs {$defenderPool} @TN{$tn} | A {$attackerSuccesses} [{$attackerFaces}] / D {$defenderSuccesses} [{$defenderFaces}] => {$outcome}

@@ -38,6 +38,8 @@ public sealed partial class CharacterPickerButton : ContainerButton
         ToggleMode = true;
         Group = group;
         var description = profile.Name;
+        var fullUid = profile.CharacterUid.ToString();
+        var shortUid = fullUid.Length > 8 ? fullUid[..8] : fullUid;
 
         View.LoadPreview(profile);
 
@@ -48,10 +50,13 @@ public sealed partial class CharacterPickerButton : ContainerButton
             description = $"{description}\n{jobName}";
         }
 
+        description = $"{description}\n{Loc.GetString("character-setup-gui-character-picker-button-character-id", ("id", shortUid))}";
+
         Pressed = isSelected;
         DeleteButton.Visible = !isSelected;
 
         DescriptionLabel.Text = description;
+        DescriptionLabel.ToolTip = Loc.GetString("character-setup-gui-character-picker-button-character-id-full", ("id", fullUid));
 
         ConfirmDeleteButton.OnPressed += _ =>
         {

@@ -36,6 +36,12 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
     public IReadOnlyList<EntityUid> HitEntities;
 
     /// <summary>
+    ///     Targets that should not take damage from this melee event.
+    ///     This allows per-target cancel behavior for multi-target attacks.
+    /// </summary>
+    public HashSet<EntityUid> SuppressDamageTargets = new();
+
+    /// <summary>
     ///     Used to define a new hit sound in case you want to override the default GenericHit.
     ///     Also gets a pitch modifier added to it.
     /// </summary>

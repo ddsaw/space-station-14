@@ -168,6 +168,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             return new HumanoidCharacterProfile(
+                profile.CharacterUid,
                 profile.CharacterName,
                 profile.FlavorText,
                 species,
