@@ -1,0 +1,51 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp float grainStrength;
+uniform highp float grainScale;
+uniform highp float darkThreshold;
+uniform highp float darkThresholdMax;
+uniform highp float disableThreshold;
+uniform highp float animationTime;
+uniform highp float animationSpeed;
+uniform highp float flickerStrength;
+uniform highp vec2 worldMin;
+uniform highp vec2 worldSize;
+uniform highp float debugMode;
+
+highp float hash2(highp vec2 p)
+{
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+void fragment()
+{
+    highp vec4 src = zTextureSpec(SCREEN_TEXTURE, UV);
+
+    if (debugMode > 0.5)
+    {
+        COLOR = vec4(1.0, 0.0, 1.0, 1.0);
+        return;
+    }
+
+    // World-anchored coordinates so the pattern stays tied to map locations.
+    highp vec2 worldPos = worldMin + UV * worldSize;
+    highp float t = animationTime * animationSpeed;
+
+    // 2-octave non-uniform grain.
+    highp float base = hash2((worldPos + vec2(t, -t * 0.73)) * grainScale);
+    highp float detail = hash2((worldPos * 2.13 + vec2(-t * 0.37, t * 0.51)) * grainScale * 1.91);
+    highp float n = (base * 0.7 + detail * 0.3) - 0.5;
+
+    highp float luma = dot(src.rgb, vec3(0.2126, 0.7152, 0.0722));
+    highp float darkMax = max(darkThreshold, darkThresholdMax);
+    highp float dark = 1.0 - smoothstep(darkThreshold, darkMax, luma);
+
+    // Hard disable in well-lit regions.
+    highp float disableMask = 1.0 - smoothstep(disableThreshold - 0.03, disableThreshold + 0.03, luma);
+
+    // Subtle animated global intensity modulation.
+    highp float flicker = 1.0 + (hash2(vec2(floor(animationTime * 8.0), 19.91)) - 0.5) * 2.0 * flickerStrength;
+
+    highp float delta = n * dark * disableMask * grainStrength * flicker;
+
+    COLOR = vec4(clamp(src.rgb + delta, 0.0, 1.0), src.a);
+}

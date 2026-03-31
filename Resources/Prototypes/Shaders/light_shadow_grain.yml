@@ -1,0 +1,4 @@
+- type: shader
+  id: LightShadowGrainFullscreen
+  kind: source
+  path: "/Textures/Shaders/light_shadow_grain_fullscreen.swsl"
