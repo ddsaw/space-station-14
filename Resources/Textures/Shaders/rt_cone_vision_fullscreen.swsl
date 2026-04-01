@@ -1,0 +1,46 @@
+uniform sampler2D SCREEN_TEXTURE;
+// Viewport quad in world space (matches DrawTextureWorld: BL, BR, TR, TL vs UV).
+uniform highp vec2 quadBL;
+uniform highp vec2 quadBR;
+uniform highp vec2 quadTL;
+uniform highp vec2 quadTR;
+uniform highp vec2 eyeWorldPos;
+uniform highp vec2 eyeForward;
+uniform highp float halfAngleCos;
+uniform highp float nearRadius;
+uniform highp float debugMode;
+
+void fragment()
+{
+    highp vec2 worldPos = mix(mix(quadBL, quadBR, UV.x), mix(quadTL, quadTR, UV.x), UV.y);
+
+    highp vec2 toPixel = worldPos - eyeWorldPos;
+    highp float dist = length(toPixel);
+
+    highp vec4 src = zTextureSpec(SCREEN_TEXTURE, UV);
+
+    // Always visible within the near circle.
+    if (dist <= nearRadius)
+    {
+        COLOR = src;
+        return;
+    }
+
+    highp vec2 nd = toPixel / dist;
+    highp float d = dot(nd, eyeForward);
+
+    if (d >= halfAngleCos)
+    {
+        COLOR = src;
+        return;
+    }
+
+    if (debugMode > 0.5)
+    {
+        COLOR = vec4(1.0, 0.0, 1.0, 1.0);
+    }
+    else
+    {
+        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+    }
+}

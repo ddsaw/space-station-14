@@ -1,0 +1,4 @@
+- type: shader
+  id: RTConeVisionFullscreen
+  kind: source
+  path: "/Textures/Shaders/rt_cone_vision_fullscreen.swsl"
