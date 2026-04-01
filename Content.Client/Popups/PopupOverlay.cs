@@ -85,6 +85,7 @@ public sealed class PopupOverlay : Overlay
             ourPos = viewPos.Position;
         }
 
+        var visible = new List<(PopupSystem.WorldPopupLabel Popup, Vector2 Pos, EntityUid Entity, bool HasEntity)>();
         foreach (var popup in _popup.WorldLabels)
         {
             var mapPos = _transform.ToMapCoordinates(popup.InitialPos);
@@ -100,7 +101,35 @@ public sealed class PopupOverlay : Overlay
                 continue;
 
             var pos = Vector2.Transform(mapPos.Position, matrix);
-            _controller.DrawPopup(popup, worldHandle, pos, scale);
+            var entity = popup.InitialPos.EntityId;
+            visible.Add((popup, pos, entity, entity.IsValid()));
+        }
+
+        // Draw newest popups in the top-most stack slot.
+        visible.Sort((a, b) => a.Popup.TotalTime.CompareTo(b.Popup.TotalTime));
+
+        var stackByEntity = new Dictionary<EntityUid, int>();
+        var stackByTile = new Dictionary<(int X, int Y), int>();
+        const float stackStep = 14f;
+        const float tileQuantization = 8f;
+
+        foreach (var (popup, pos, entity, hasEntity) in visible)
+        {
+            var stackIndex = 0;
+            if (hasEntity)
+            {
+                stackByEntity.TryGetValue(entity, out stackIndex);
+                stackByEntity[entity] = stackIndex + 1;
+            }
+            else
+            {
+                var tile = ((int) MathF.Round(pos.X / tileQuantization), (int) MathF.Round(pos.Y / tileQuantization));
+                stackByTile.TryGetValue(tile, out stackIndex);
+                stackByTile[tile] = stackIndex + 1;
+            }
+
+            var stackedPos = pos + new Vector2(0f, stackIndex * stackStep);
+            _controller.DrawPopup(popup, worldHandle, stackedPos, scale);
         }
     }
 }
