@@ -106,4 +106,18 @@ public sealed class MeleeSoundSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Plays an explicit defender-side parry sound.
+    /// This currently uses the weapon no-damage sound for deterministic feedback.
+    /// </summary>
+    public void PlayParrySound(EntityUid targetUid, EntityUid? userUid, MeleeWeaponComponent weaponComponent)
+    {
+        if (Deleted(targetUid))
+            return;
+
+        var coords = Transform(targetUid).Coordinates;
+        var parrySound = weaponComponent.NoDamageSound;
+        _audio.PlayPredicted(parrySound, coords, userUid, parrySound.Params.WithVariation(DamagePitchVariation));
+    }
+
 }

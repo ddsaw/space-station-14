@@ -447,6 +447,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Attack confirmed
         for (var i = 0; i < swings; i++)
         {
+            // Always play swing audio immediately for responsiveness.
+            _meleeSound.PlaySwingSound(user, weaponUid, weapon);
             string animation;
 
             switch (attack)
@@ -516,7 +518,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, null);
             RaiseLocalEvent(meleeUid, missEvent);
-            _meleeSound.PlaySwingSound(user, meleeUid, component);
             return;
         }
 
@@ -530,6 +531,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return;
 
         if (hitEvent.SuppressDamageTargets.Contains(target.Value))
+            return;
+
+        var defenseEvent = new MeleeDefenseAttemptEvent(user, target.Value, meleeUid, MeleeAttackType.Light);
+        RaiseLocalEvent(target.Value, defenseEvent);
+
+        if (defenseEvent.SuppressDamage)
             return;
 
         var targets = new List<EntityUid>(1)
@@ -575,7 +582,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         }
 
-        _meleeSound.PlayHitSound(target.Value, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
+        if (!_netMan.IsClient && !defenseEvent.SoundHandled)
+            _meleeSound.PlayHitSound(target.Value, null, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
 
         if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
@@ -620,10 +628,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, direction);
             RaiseLocalEvent(meleeUid, missEvent);
-
-            // immediate audio feedback
-            _meleeSound.PlaySwingSound(user, meleeUid, component);
-
             return true;
         }
 
@@ -688,6 +692,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
 
         var appliedDamage = new DamageSpecifier();
+        EntityUid? hitSoundTarget = null;
 
         for (var i = targets.Count - 1; i >= 0; i--)
         {
@@ -709,7 +714,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             if (hitEvent.SuppressDamageTargets.Contains(entity))
                 continue;
 
+            var defenseEvent = new MeleeDefenseAttemptEvent(user, entity, meleeUid, MeleeAttackType.Heavy);
+            RaiseLocalEvent(entity, defenseEvent);
+
+            if (defenseEvent.SuppressDamage)
+                continue;
+
             var damageResult = Damageable.ChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
+            if (!defenseEvent.SoundHandled)
+                hitSoundTarget ??= entity;
 
             if (damageResult.GetTotal() > FixedPoint2.Zero)
             {
@@ -736,10 +749,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
         }
 
-        if (entities.Count != 0)
+        if (hitSoundTarget != null && !_netMan.IsClient)
         {
-            var target = entities.First();
-            _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
+            _meleeSound.PlayHitSound(hitSoundTarget.Value, null, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
         }
 
         if (appliedDamage.GetTotal() > FixedPoint2.Zero)
@@ -908,8 +920,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // At this point we diverge
         if (_netMan.IsClient)
         {
-            // Play a sound to give instant feedback; same with playing the animations
-            _meleeSound.PlaySwingSound(user, meleeUid, component);
             return true;
         }
 
