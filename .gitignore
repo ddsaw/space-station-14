@@ -301,6 +301,9 @@ desktop.ini
 # Images generated using the MapRenderer
 Resources/MapImages
 
+# Local RedTruce docs (not versioned)
+/_RedTruceDocs/
+
 ## Docfx stuff
 /Content.Docfx/api/
 /Content.Docfx/*site
