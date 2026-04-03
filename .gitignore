@@ -304,6 +304,9 @@ Resources/MapImages
 # Local RedTruce docs (not versioned)
 /_RedTruceDocs/
 
+# RedTruce local tooling (not versioned; doc under /_RedTruceDocs/)
+/_RedTruce/tools/
+
 ## Docfx stuff
 /Content.Docfx/api/
 /Content.Docfx/*site
