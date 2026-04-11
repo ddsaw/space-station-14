@@ -1,0 +1,14 @@
+<widgets:RTVitalBarsHud xmlns="https://spacestation14.io"
+                        xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.RT.Widgets"
+                        Orientation="Vertical"
+                        Margin="0 6 0 0"
+                        SeparationOverride="4">
+    <BoxContainer Name="RTHealthRow" Access="Public" Orientation="Horizontal" SeparationOverride="4">
+        <TextureRect Name="RTHealthIcon" Access="Public" SetSize="32 32" Stretch="KeepAspectCentered" />
+        <ProgressBar Name="RTHealthBar" Access="Public" MinValue="0" MaxValue="1" Value="1" MinSize="140 14" VerticalAlignment="Center" />
+    </BoxContainer>
+    <BoxContainer Name="RTStaminaRow" Access="Public" Orientation="Horizontal" SeparationOverride="4">
+        <TextureRect Name="RTStaminaIcon" Access="Public" SetSize="32 32" Stretch="KeepAspectCentered" />
+        <ProgressBar Name="RTStaminaBar" Access="Public" MinValue="0" MaxValue="1" Value="1" MinSize="140 14" VerticalAlignment="Center" />
+    </BoxContainer>
+</widgets:RTVitalBarsHud>
