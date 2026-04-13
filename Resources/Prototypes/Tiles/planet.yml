@@ -81,6 +81,12 @@
   parent: BaseFloorPlanet
   sprite: /Textures/Tiles/Planet/basalt.png
 
+# Same sprite as FloorBasalt; isSpace ties the tile to MapAtmosphere (see ContentTileDefinition).
+- type: tile
+  id: FloorBasaltOutdoor
+  parent: FloorBasalt
+  isSpace: true
+
 # Snow
 - type: tile
   id: FloorSnow

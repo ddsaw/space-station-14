@@ -1,0 +1,154 @@
+# RedTruce Tall Obstacles - MS13 sprites via Nuclear-14
+# License: CC-BY-NC-SA-3.0
+# Source: https://github.com/Misfit-Sanctuary/nuclear-14
+# Original: Mojave Sun 13 (https://github.com/Mojave-Sun/mojave-sun-13)
+
+- type: entity
+  parent: BaseStructure
+  id: RTBaseTallObstacle
+  suffix: RT, tall
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tallobstacles.rsi
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallic
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: PlacementReplacement
+    key: walls
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.6,0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+
+- type: entity
+  parent: RTBaseTallObstacle
+  id: RTBarricadeWoodTall
+  name: wooden barricade
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: barricade
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: RTBaseTallObstacle
+  id: RTCellBars
+  name: cell bars
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bars
+
+- type: entity
+  parent: RTCellBars
+  id: RTCellBarsSlot
+  name: cell bars
+  suffix: RT, slot
+  components:
+  - type: Sprite
+    state: barsslot
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.6,-0.15,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.5,-0.6,0.15,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+
+- type: entity
+  parent: RTCellBars
+  id: RTCellBarsCorner
+  name: cell bars
+  suffix: RT, corner
+  components:
+  - type: Sprite
+    state: barscorner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.6,0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.5,0.5,0.6,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+
+- type: entity
+  parent: RTCellBars
+  id: RTCellBarsRust
+  name: rusty cell bars
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bars_rust
+
+- type: entity
+  parent: RTCellBarsSlot
+  id: RTCellBarsSlotRust
+  name: rusty cell bars
+  suffix: RT, slot
+  components:
+  - type: Sprite
+    state: barsslot_rust
+
+- type: entity
+  parent: RTCellBarsCorner
+  id: RTCellBarsCornerRust
+  name: rusty cell bars
+  suffix: RT, corner
+  components:
+  - type: Sprite
+    state: barscorner_rust

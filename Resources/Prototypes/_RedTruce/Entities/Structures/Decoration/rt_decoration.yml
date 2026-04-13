@@ -1,0 +1,801 @@
+# RedTruce Decorations & Props - MS13 sprites via Nuclear-14
+# License: CC-BY-NC-SA-3.0
+# Source: https://github.com/Misfit-Sanctuary/nuclear-14
+# Original: Mojave Sun 13 (https://github.com/Mojave-Sun/mojave-sun-13)
+# barrels.rsi: Created by INFRARED_BARON for MS13
+# cave_decor.rsi, world.rsi, barriers.rsi, signs_64x64.rsi: Taken from MS13
+# flora.rsi: Taken from Nukapop13
+# torches.rsi: Ported from Nukapop-13
+
+# ── Abstract base for floor decorations ───────────────────────────────────────
+- type: entity
+  id: RTDecorFloorBase
+  suffix: RT, Mapping
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Decoration/cave_decor.rsi
+    snapCardinals: true
+    netsync: false
+    noRot: true
+    drawdepth: FloorObjects
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Clickable
+
+# ── Cave decorations (from cave_decor.rsi — MS13) ────────────────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorStalagmite1
+  name: stalagmite
+  suffix: RT
+  components:
+  - type: Sprite
+    state: stalagmite
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTDecorStalagmite1
+  id: RTDecorStalagmite2
+  components:
+  - type: Sprite
+    state: stalagmite1
+
+- type: entity
+  parent: RTDecorStalagmite1
+  id: RTDecorStalagmite3
+  components:
+  - type: Sprite
+    state: stalagmite2
+
+- type: entity
+  parent: RTDecorStalagmite1
+  id: RTDecorStalagmite4
+  components:
+  - type: Sprite
+    state: stalagmite3
+
+- type: entity
+  parent: RTDecorStalagmite1
+  id: RTDecorStalagmite5
+  components:
+  - type: Sprite
+    state: stalagmite4
+
+- type: entity
+  parent: RTDecorStalagmite1
+  id: RTDecorStalagmite6
+  components:
+  - type: Sprite
+    state: stalagmite5
+
+- type: entity
+  parent: RTDecorStalagmite1
+  id: RTDecorMinecart
+  name: fallen minecart
+  suffix: RT
+  components:
+  - type: Sprite
+    state: minecart_fallen
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorSignLeft
+  name: sign
+  suffix: RT
+  components:
+  - type: Sprite
+    state: sign_left
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorSignRight
+  name: sign
+  suffix: RT
+  components:
+  - type: Sprite
+    state: sign_right
+
+# ── Floor boards (cave_decor.rsi — MS13) ─────────────────────────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardDroughtNS1
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_drought_ns-1
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardDroughtNS2
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_drought_ns-2
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardDroughtNS3
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_drought_ns-3
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardDroughtWE1
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_drought_we-1
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardDroughtWE2
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_drought_we-2
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardDroughtWE3
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_drought_we-3
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardMammothNS1
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_mammoth_ns-1
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardMammothNS2
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_mammoth_ns-2
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardMammothWE1
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_mammoth_we-1
+
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorFloorBoardMammothWE2
+  name: floor board
+  suffix: RT
+  components:
+  - type: Sprite
+    state: boards_mammoth_we-2
+
+# ── World decorations (world.rsi — MS13) ─────────────────────────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTDecorWorldBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Decoration/world.rsi
+    snapCardinals: false
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorPaper
+  name: scattered paper
+  suffix: RT
+  components:
+  - type: Sprite
+    state: scattered_papers
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorScrapwood
+  name: wood scraps
+  suffix: RT
+  components:
+  - type: Sprite
+    state: woodscrap
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorBrickrubble
+  name: brick rubble
+  suffix: RT
+  components:
+  - type: Sprite
+    state: brickrubble
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorCardboard
+  name: cardboard boxes
+  suffix: RT
+  components:
+  - type: Sprite
+    state: cardboard
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorPallet
+  name: pallet
+  suffix: RT
+  components:
+  - type: Sprite
+    state: pallet
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorPalletStack
+  name: pallet stack
+  suffix: RT
+  components:
+  - type: Sprite
+    state: pallet_stack
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTDecorFloorPalletStack
+  id: RTDecorFloorBrickStack
+  name: brick stack
+  suffix: RT
+  components:
+  - type: Sprite
+    state: brickpile
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorBookstack1
+  name: book stack
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bookstack_1
+
+- type: entity
+  parent: RTDecorFloorBookstack1
+  id: RTDecorFloorBookstack2
+  components:
+  - type: Sprite
+    state: bookstack_2
+
+- type: entity
+  parent: RTDecorFloorBookstack1
+  id: RTDecorFloorBookstack3
+  components:
+  - type: Sprite
+    state: bookstack_3
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorBookPile1
+  name: book pile
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bookpile_1
+
+- type: entity
+  parent: RTDecorFloorBookPile1
+  id: RTDecorFloorBookPile2
+  components:
+  - type: Sprite
+    state: bookpile_2
+
+- type: entity
+  parent: RTDecorFloorBookPile1
+  id: RTDecorFloorBookPile3
+  components:
+  - type: Sprite
+    state: bookpile_3
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorFood1
+  name: food stuff
+  suffix: RT
+  components:
+  - type: Sprite
+    state: foodstuff_1
+
+- type: entity
+  parent: RTDecorFloorFood1
+  id: RTDecorFloorFood2
+  components:
+  - type: Sprite
+    state: foodstuff_2
+
+- type: entity
+  parent: RTDecorFloorFood1
+  id: RTDecorFloorFood3
+  components:
+  - type: Sprite
+    state: foodstuff_3
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorTrashbags1
+  name: trash bags
+  suffix: RT
+  components:
+  - type: Sprite
+    state: trashbags_1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTDecorFloorTrashbags1
+  id: RTDecorFloorTrashbags2
+  components:
+  - type: Sprite
+    state: trashbags_2
+
+- type: entity
+  parent: RTDecorFloorTrashbags1
+  id: RTDecorFloorTrashbags3
+  components:
+  - type: Sprite
+    state: trashbags_3
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorGlass1
+  name: glass bottles
+  suffix: RT
+  components:
+  - type: Sprite
+    state: glass_1
+
+- type: entity
+  parent: RTDecorFloorGlass1
+  id: RTDecorFloorGlass2
+  components:
+  - type: Sprite
+    state: glass_2
+
+- type: entity
+  parent: RTDecorFloorGlass1
+  id: RTDecorFloorGlass3
+  components:
+  - type: Sprite
+    state: glass_3
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorFloorSkeleton
+  name: skeleton
+  suffix: RT
+  components:
+  - type: Sprite
+    state: skeleton
+
+- type: entity
+  parent: RTDecorWorldBase
+  id: RTDecorBarrels
+  name: barrels
+  suffix: RT
+  components:
+  - type: Sprite
+    layers:
+    - state: barrels1
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          barrels1: ""
+          barrels2: ""
+          barrels3: ""
+          barrels4: ""
+          barrels5: ""
+          barrels6: ""
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+# ── Barrels (barrels.rsi — INFRARED_BARON for MS13) ──────────────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTBarrelBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Decoration/barrels.rsi
+    snapCardinals: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelGrey
+  name: grey barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: grey_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelRed
+  name: red barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: red_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelYellow
+  name: yellow barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: yellow_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelLabel
+  name: labeled barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: label_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelHazard
+  name: hazard barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: hazard_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelToxic
+  name: toxic barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: toxic_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelWaste
+  name: waste barrel
+  suffix: RT
+  components:
+  - type: Sprite
+    state: waste_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelDoubleGrey
+  name: grey barrels
+  suffix: RT, double
+  components:
+  - type: Sprite
+    state: double_grey_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelTripleGrey
+  name: grey barrels
+  suffix: RT, triple
+  components:
+  - type: Sprite
+    state: triple_grey_1
+
+- type: entity
+  parent: RTBarrelBase
+  id: RTBarrelQuadGrey
+  name: grey barrels
+  suffix: RT, quad
+  components:
+  - type: Sprite
+    state: quad_grey_1
+
+# ── Barriers (barriers.rsi — MS13) ───────────────────────────────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTBarrierBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Decoration/barriers.rsi
+    snapCardinals: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.2,0.4,0.2"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTBarrierBase
+  id: RTBarrierConcrete1
+  name: concrete barrier
+  suffix: RT
+  components:
+  - type: Sprite
+    state: concrete_barrier_1
+
+- type: entity
+  parent: RTBarrierBase
+  id: RTBarrierConcrete2
+  name: concrete barrier
+  suffix: RT
+  components:
+  - type: Sprite
+    state: concrete_barrier_2
+
+- type: entity
+  parent: RTBarrierBase
+  id: RTBarrierConcrete3
+  name: concrete barrier
+  suffix: RT
+  components:
+  - type: Sprite
+    state: concrete_barrier_3
+
+- type: entity
+  parent: RTBarrierBase
+  id: RTBarrierRoad
+  name: road barrier
+  suffix: RT
+  components:
+  - type: Sprite
+    state: road_barrier
+
+# ── Flora (flora.rsi — Nukapop13, useful for medieval) ───────────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTFloraBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Decoration/flora.rsi
+    snapCardinals: false
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTreeStump
+  name: tree stump
+  suffix: RT
+  components:
+  - type: Sprite
+    state: tree_stump
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.25
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTreeLog
+  name: tree log
+  suffix: RT
+  components:
+  - type: Sprite
+    state: tree_log
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTimber
+  name: timber
+  suffix: RT
+  components:
+  - type: Sprite
+    state: timber
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorBranch
+  name: branch
+  suffix: RT
+  components:
+  - type: Sprite
+    state: branch
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorBrushwood
+  name: brushwood
+  suffix: RT
+  components:
+  - type: Sprite
+    state: brushwood
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTallGrass1
+  name: tall grass
+  suffix: RT
+  components:
+  - type: Sprite
+    state: tall_grass_1
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTallGrass2
+  name: tall grass
+  suffix: RT
+  components:
+  - type: Sprite
+    state: tall_grass_2
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTallGrass3
+  name: tall grass
+  suffix: RT
+  components:
+  - type: Sprite
+    state: tall_grass_3
+
+- type: entity
+  parent: RTFloraBase
+  id: RTDecorTallGrass4
+  name: tall grass
+  suffix: RT
+  components:
+  - type: Sprite
+    state: tall_grass_4
+
+# ── Torches (torches.rsi — Nukapop-13, great for medieval) ───────────────────
+- type: entity
+  parent: RTDecorFloorBase
+  id: RTTorchBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Decoration/torches.rsi
+    snapCardinals: false
+
+- type: entity
+  parent: RTTorchBase
+  id: RTTorchUnlit
+  name: torch
+  suffix: RT, unlit
+  components:
+  - type: Sprite
+    state: torch_unlit
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.10
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTTorchUnlit
+  id: RTTorchLit
+  name: torch
+  suffix: RT, lit
+  components:
+  - type: Sprite
+    state: torch_lit
+  - type: PointLight
+    radius: 5
+    energy: 1.5
+    color: "#E8B060"
+
+- type: entity
+  parent: RTTorchBase
+  id: RTWallTorchUnlit
+  name: wall torch
+  suffix: RT, unlit
+  components:
+  - type: Sprite
+    state: wall_torch_unlit
+
+- type: entity
+  parent: RTWallTorchUnlit
+  id: RTWallTorchLit
+  name: wall torch
+  suffix: RT, lit
+  components:
+  - type: Sprite
+    state: wall_torch_lit
+  - type: PointLight
+    radius: 5
+    energy: 1.5
+    color: "#E8B060"

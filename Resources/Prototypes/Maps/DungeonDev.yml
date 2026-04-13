@@ -1,0 +1,14 @@
+- type: gameMap
+  id: DungeonDev
+  mapName: DungeonDev
+  mapPath: /Maps/DungeonDev.yml
+  minPlayers: 0
+  stations:
+    Empty:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Empty"
+        - type: StationJobs
+          availableJobs:
+            Passenger: [ -1, -1 ]

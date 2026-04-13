@@ -1,0 +1,977 @@
+# RedTruce Tiles - MS13 / N14 sprites via Nuclear-14
+# License: CC-BY-NC-SA-3.0 (unless noted otherwise)
+# Source: https://github.com/Misfit-Sanctuary/nuclear-14
+# See _N14/_MS13/Tiles/attributions.yml for per-file attribution
+
+# ── Wood tiles ────────────────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorWoodOak
+  name: RT oak floor
+  sprite: /Textures/_N14/_MS13/Tiles/oak.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWoodOakBroken
+  name: RT broken oak floor
+  sprite: /Textures/_N14/_MS13/Tiles/oakbroken.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWoodMaple
+  name: RT maple floor
+  sprite: /Textures/_N14/_MS13/Tiles/maple.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWoodHouse
+  name: RT house wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/woodhouse.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWoodHouseBroken
+  name: RT broken house wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/woodhousebroken.png
+  variants: 2
+  placementVariants:
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWoodBurnt
+  name: RT burnt wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/woodburnt.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWoodBurntBroken
+  name: RT broken burnt wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/woodburntbroken.png
+  variants: 7
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── MS13 Wood tiles ───────────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorMS13WoodCommon
+  name: RT common wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_common.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodCommonDamaged
+  name: RT damaged common wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_common_damaged.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodFancy
+  name: RT fancy wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_fancy.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodFancyDamaged
+  name: RT damaged fancy wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_fancy_damaged.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodMosaic
+  name: RT mosaic wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_mosaic.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodMosaicDamaged
+  name: RT damaged mosaic wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_mosaic_damaged.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodWide
+  name: RT wide wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_wide.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13WoodWideDamaged
+  name: RT damaged wide wood floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Wood/wood_wide_damaged.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepWood
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── Carpet tiles ──────────────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorCarpetRed
+  name: RT red carpet
+  sprite: /Textures/_N14/_MS13/Tiles/carpet.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetRed
+  name: RT MS13 red carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_red.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetFancyRed
+  name: RT MS13 fancy red carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_fancy_red.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetBlue
+  name: RT MS13 blue carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_blue.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetFancyBlue
+  name: RT MS13 fancy blue carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_fancy_blue.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetGreen
+  name: RT MS13 green carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_green.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetFancyGreen
+  name: RT MS13 fancy green carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_fancy_green.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13CarpetViolet
+  name: RT MS13 violet carpet
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Carpet/carpet_violet.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepCarpet
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── Concrete & Brick tiles ────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorConcrete
+  name: RT concrete
+  sprite: /Textures/_N14/_MS13/Tiles/concrete.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorConcreteDark
+  name: RT dark concrete
+  sprite: /Textures/_N14/_MS13/Tiles/concretedark.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorConcreteRoad
+  name: RT concrete road
+  sprite: /Textures/_N14/_MS13/Tiles/concreteroad.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13BrickConcrete
+  name: RT brick concrete
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Concrete/brickconcrete.png
+  variants: 9
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13BrickHorizontal
+  name: RT horizontal brick
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Brick/brickhorizontal.png
+  variants: 9
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13BrickVertical
+  name: RT vertical brick
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Brick/brickvertical.png
+  variants: 9
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13Concrete
+  name: RT MS13 concrete
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Concrete/concrete_big.png
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13ConcreteIndustrial
+  name: RT MS13 industrial concrete
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Concrete/concrete_industrial.png
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── MS13 Decorative floor tiles ──────────────────────────────────────────────
+- type: tile
+  id: RTFloorMS13TileFancy
+  name: RT fancy tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/fancy.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileSierra
+  name: RT sierra tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/sierra.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileOrnate
+  name: RT ornate tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/tileornate.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileBlack
+  name: RT black tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Small/tileblack.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileBrown
+  name: RT brown tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Small/tilebrown.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileGrey
+  name: RT grey tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Small/tilegrey.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileNavy
+  name: RT navy tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Small/tilenavy.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileCafe
+  name: RT cafe tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Large/tilecafe.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileCeramic
+  name: RT ceramic tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Large/tileceramic.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileCheck
+  name: RT checkerboard tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Large/tilecheck.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileGreen
+  name: RT green tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Large/tilegreen.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13TileWhiteLarge
+  name: RT white large tile
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Large/tilewhitelarge.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── Metal tiles ───────────────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorMS13MetalIndustrial
+  name: RT industrial metal floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Steel/steel_industrial.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13MetalTile
+  name: RT metal tile floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Steel/steel_tiles.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13MetalGrate
+  name: RT metal grate floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Steel/steel_grate.png
+  variants: 8
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorMS13MetalSolid
+  name: RT solid metal floor
+  sprite: /Textures/_N14/_MS13/Tiles/ms13/Steel/steel_solid.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── Ground / Natural tiles ────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorDirt
+  name: RT dirt
+  sprite: /Textures/_N14/_MS13/Tiles/dirt.png
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorWasteland
+  name: RT wasteland ground
+  sprite: /Textures/_N14/_MS13/Tiles/wasteland.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: RTFloorHouseBase
+  name: RT house foundation
+  sprite: /Textures/_N14/_MS13/Tiles/housebase.png
+  baseTurf: Plating
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  weather: true
+
+# ── Water tiles ───────────────────────────────────────────────────────────────
+- type: tile
+  id: RTFloorRiverWater
+  name: RT river water
+  sprite: /Textures/_N14/_MS13/Tiles/riverwater.png
+  variants: 32
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  friction: 0.01
+  isSubfloor: true
+  isSpace: false
+  sturdy: false
+  thermalConductivity: 0.4
+  heatCapacity: 700000
+  weather: true
+  indestructible: true

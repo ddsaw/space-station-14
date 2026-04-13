@@ -80,7 +80,7 @@ namespace Content.Shared.DrawDepth
         /// <summary>
         ///     Posters, APCs, air alarms, etc. This also includes most lights & lamps.
         /// </summary>
-        WallMountedItems = DrawDepthTag.Default + 2,
+        WallMountedItems = DrawDepthTag.Default + 8,
 
         /// <summary>
         ///     To use for objects that would usually fall under SmallObjects, but appear taller than 1 tile. For example: Reagent Grinder

@@ -1,0 +1,576 @@
+# RedTruce Tall Walls - MS13 sprites via Nuclear-14
+# License: CC-BY-NC-SA-3.0
+# Source: https://github.com/Misfit-Sanctuary/nuclear-14
+# Original: Mojave Sun 13 (https://github.com/Mojave-Sun/mojave-sun-13)
+# Ported to SS14 by Peptide90 / Kill_Me_I_Noobs
+# Adapted for RedTruce fork
+
+# ── Abstract bases ────────────────────────────────────────────────────────────
+- type: entity
+  parent: BaseWall
+  id: RTBaseWallTall
+  suffix: RT, tall
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Rock
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTBaseWallTallMetalWeak
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: PerforatedMetallic
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTBaseWallTallMetal
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallic
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTBaseWallTallMetalStrong
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 10
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTBaseWallTallWood
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+
+# ── Stone / Rock walls ────────────────────────────────────────────────────────
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallAdobeTall
+  name: adobe wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/adobe.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/adobe.rsi
+  - type: IconSmooth
+    key: walls
+    base: talladobe
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallBrickTall
+  name: brick wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/brick.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/brick.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallbrick
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallBrickAltTall
+  name: brick wall alt
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/brickalt.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/brickalt.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallbrickalt
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallBrickGrayTall
+  name: gray brick wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/brickgray.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/brickgray.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallbrickgray
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallCombTall
+  name: comb wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/comb.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/comb.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallcomb
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallConcreteTall
+  name: concrete wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/concrete.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/concrete.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallconcrete
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallConcreteAltTall
+  name: concrete wall alt
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/concretealt.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/concretealt.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallconcretealt
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallDungeonTall
+  name: dungeon wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/dungeon.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/dungeon.rsi
+  - type: IconSmooth
+    key: walls
+    base: talldungeon
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallDungeonAltTall
+  name: dungeon wall alt
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/dungeonalt.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/dungeonalt.rsi
+  - type: IconSmooth
+    key: walls
+    base: talldungeonalt
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallRockTall
+  name: rock wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rock.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrock
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: RTWallRockTall
+  id: RTWallRockDroughtTall
+  name: drought rock wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rockdrought.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rockdrought.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrockdrought
+
+- type: entity
+  parent: RTWallRockTall
+  id: RTWallRockMammothTall
+  name: mammoth rock wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rockmammoth.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rockmammoth.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrockmammoth
+
+# ── Metal walls ───────────────────────────────────────────────────────────────
+- type: entity
+  parent: RTBaseWallTallMetalStrong
+  id: RTWallBunkerTall
+  name: bunker wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/bunker.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/bunker.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallbunker
+
+- type: entity
+  parent: RTBaseWallTall
+  id: RTWallGirderTall
+  name: girder wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/girder.rsi
+    state: rebar
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/girder.rsi
+    state: rebar
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallMetalTall
+  name: metal wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/metal.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/metal.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallmetal
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallPrisonTall
+  name: prison wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/prison.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/prison.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallprison
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallReinfMetalTall
+  name: reinforced metal wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/reinfmetal.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/reinfmetal.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallreinfmetal
+
+- type: entity
+  parent: RTBaseWallTallMetalWeak
+  id: RTWallRoughScrapTall
+  name: rough scrap wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/roughscrap.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/roughscrap.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallroughscrap
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallIndustrialRustTall
+  name: industrial rust wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rustindustrial.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rustindustrial.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrustindustrial
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallMetalRustTall
+  name: rusty metal wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rustmetal.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rustmetal.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrustmetal
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallReinfMetalRustTall
+  name: rusty reinforced metal wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rustreinfmetal.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rustreinfmetal.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrustreinfmetal
+
+- type: entity
+  parent: RTBaseWallTallMetalStrong
+  id: RTWallVaultRustTall
+  name: rusty vault wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rustvault.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rustvault.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrustvault
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallVaultVentsRustTall
+  name: rusty vault vent wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/rustvaultvent.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/rustvaultvent.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallrustvaultvent
+
+- type: entity
+  parent: RTBaseWallTallMetalWeak
+  id: RTWallScrapTall
+  name: scrap wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/scrap.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/scrap.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallscrap
+
+- type: entity
+  parent: RTBaseWallTallMetalWeak
+  id: RTWallScrapBlueTall
+  name: blue scrap wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/scrapblue.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/scrapblue.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallscrapblue
+
+- type: entity
+  parent: RTBaseWallTallMetalWeak
+  id: RTWallScrapRedTall
+  name: red scrap wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/scrapred.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/scrapred.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallscrapred
+
+- type: entity
+  parent: RTBaseWallTallMetalWeak
+  id: RTWallScrapWhiteTall
+  name: white scrap wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/scrapwhite.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/scrapwhite.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallscrapwhite
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallSewerTall
+  name: sewer wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/sewer.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/sewer.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallsewer
+
+# ── Wood / Siding walls ──────────────────────────────────────────────────────
+- type: entity
+  parent: RTBaseWallTallWood
+  id: RTWallSidingTall
+  name: siding wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/siding.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/siding.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallsiding
+
+- type: entity
+  parent: RTBaseWallTallWood
+  id: RTWallSidingBlueTall
+  name: blue siding wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/sidingblue.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/sidingblue.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallsidingblue
+
+- type: entity
+  parent: RTBaseWallTallWood
+  id: RTWallSidingRedTall
+  name: red siding wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/sidingred.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/sidingred.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallsidingred
+
+- type: entity
+  parent: RTBaseWallTallWood
+  id: RTWallSidingGreenTall
+  name: green siding wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/sidinggreen.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/sidinggreen.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallsidinggreen
+
+# ── Vault walls ───────────────────────────────────────────────────────────────
+- type: entity
+  parent: RTBaseWallTallMetalStrong
+  id: RTWallVaultTall
+  name: vault wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/vault.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/vault.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallvault
+
+- type: entity
+  parent: RTBaseWallTallMetal
+  id: RTWallVaultVentTall
+  name: vault vent wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/vaultvent.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/vaultvent.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallvaultvent
+
+- type: entity
+  parent: RTBaseWallTallWood
+  id: RTWallWoodTall
+  name: wood wall
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/wood.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/wood.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallwood
+
+- type: entity
+  parent: RTBaseWallTallWood
+  id: RTWallWoodAltTall
+  name: wood wall alt
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Walls/tall/woodalt.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Walls/tall/woodalt.rsi
+  - type: IconSmooth
+    key: walls
+    base: tallwoodalt

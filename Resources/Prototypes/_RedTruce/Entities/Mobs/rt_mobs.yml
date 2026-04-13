@@ -1,0 +1,68 @@
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: RTFelineSkeleton
+  name: feline skeleton
+  description: The reanimated skeleton of a large cat. Its empty eye sockets glow with a faint, malevolent light.
+  suffix: RT, DEBUG
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _N14/_MS13/Mobs/feline_skeleton.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: skeleton
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: skeleton
+      Dead:
+        Base: dead
+  - type: MovementAlwaysTouching
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.5
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: Stamina
+    baseCritThreshold: 40
+    animationThreshold: 20
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 7
+  - type: ReplacementAccent
+    accent: genericAggressive
