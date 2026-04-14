@@ -1,0 +1,1405 @@
+# RedTruce Furniture - MS13 / N14 sprites via Nuclear-14
+# License: CC-BY-NC-SA-3.0 (unless noted)
+# chairs.rsi: MS13, modified by Peptide90 | cooking.rsi: INFRARED_BARON for MS13
+# 64x64_furniture.rsi, rugs.rsi, rugs64x64.rsi, counters.rsi, barcounter.rsi,
+#   table_settler.rsi, metalgrate.rsi, tables.rsi: MS13
+# 64x96_furniture.rsi: MS13, modified by Peptide90
+# bedsandchairs.rsi, junk.rsi: Interstate-80, modified by Peptide90
+# bookshelf.rsi, schooldesk.rsi, desks.rsi: CC0-1.0, Mithrandalf for N14
+# np13_misc.rsi: Nukapop-13 | plantpots.rsi: TGStation, modified by Peptide90
+# ms13_barricades.rsi, barricades.rsi: MS13 / INFRARED_BARON
+# televisions.rsi: MS13 | Store/Street furniture: MS13 + N14 originals
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Abstract bases
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  id: RTFreeTableBase
+  parent: BaseStructure
+  name: table
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: PlaceableSurface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+  - type: Climbable
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 4
+  - type: Clickable
+
+- type: entity
+  id: RTFreeTableBaseWood
+  parent: RTFreeTableBase
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: RTFurnitureBase
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Tables — 32×32 freestanding (tables.rsi — MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFreeTableBase
+  id: RTTableMetalRound
+  name: round metal table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_metal_round-2
+
+- type: entity
+  parent: RTFreeTableBase
+  id: RTTableMetalRoundDirty
+  name: round metal table
+  suffix: RT, dirty
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_metal_round
+
+- type: entity
+  parent: RTFreeTableBase
+  id: RTTableRolling
+  name: rolling table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_rolling
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTTableWoodSquare
+  name: square wooden table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_wood_square
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTTableWoodRound
+  name: round wooden table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_wood_round
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTTableWoodLow
+  name: low wooden table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_wood_low
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTTableWoodEnd
+  name: end table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: table_wood_end
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTTableWorkbench
+  name: workbench
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/tables.rsi
+    state: workbench_wood
+
+# ── Counters (counters.rsi — MS13) directional static sprites ─────────────
+- type: entity
+  parent: RTFreeTableBase
+  id: RTCounterMetal
+  name: metal counter
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/counters.rsi
+    state: metal_counter
+
+- type: entity
+  parent: RTCounterMetal
+  id: RTCounterMetalBend
+  suffix: RT, bend
+  components:
+  - type: Sprite
+    state: metal_counter_bend
+
+- type: entity
+  parent: RTCounterMetal
+  id: RTCounterMetalIntersect
+  suffix: RT, intersect
+  components:
+  - type: Sprite
+    state: metal_counter_intersect
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTCounterWood
+  name: wood counter
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/counters.rsi
+    state: wood_counter
+
+- type: entity
+  parent: RTCounterWood
+  id: RTCounterWoodBend
+  suffix: RT, bend
+  components:
+  - type: Sprite
+    state: wood_counter_bend
+
+- type: entity
+  parent: RTCounterWood
+  id: RTCounterWoodIntersect
+  suffix: RT, intersect
+  components:
+  - type: Sprite
+    state: wood_counter_intersect
+
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTCounterCraft
+  name: craft counter
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/counters.rsi
+    state: craft_counter
+
+- type: entity
+  parent: RTCounterCraft
+  id: RTCounterCraftBend
+  suffix: RT, bend
+  components:
+  - type: Sprite
+    state: craft_counter_bend
+
+# ── IconSmooth tables (barcounter / settler / metalgrate) ─────────────────
+- type: entity
+  parent: TableWood
+  id: RTTableBarCounter
+  name: bar counter
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/barcounter.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Furniture/Tables/barcounter.rsi
+
+- type: entity
+  parent: TableWood
+  id: RTTableWoodSettler
+  name: settler table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/table_settler.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Furniture/Tables/table_settler.rsi
+
+- type: entity
+  parent: Table
+  id: RTTableMetalGrate
+  name: metal grate table
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/metalgrate.rsi
+  - type: Icon
+    sprite: _N14/_MS13/Structures/Furniture/Tables/metalgrate.rsi
+
+# ── School desks (schooldesk.rsi — Mithrandalf, CC0) ─────────────────────
+- type: entity
+  parent: RTFreeTableBaseWood
+  id: RTTableDeskSchool1
+  name: school desk
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Tables/schooldesk.rsi
+    state: desk_1
+
+- type: entity
+  parent: RTTableDeskSchool1
+  id: RTTableDeskSchool2
+  suffix: RT, alt
+  components:
+  - type: Sprite
+    state: desk_2
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  64×64 Furniture (desks, wide tables, pool table — MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFreeTableBase
+  id: RTFurniture64Base
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/64x64_furniture.rsi
+    noRot: false
+    offset: 0.5, 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.45,1.5,0.45"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTDeskWood64
+  name: wooden desk
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: desk_wood
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTDeskMetal64
+  name: metal desk
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: desk_metal
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTTableWoodWideSquare
+  name: wide square table
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: table_wood_wide_square
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTTableWoodWideOval
+  name: wide oval table
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: table_wood_wide_oval
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTTableMetalWide
+  name: wide metal table
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: table_metal_wide
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTTablePool
+  name: pool table
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: table_pool
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTTableCards
+  name: card table
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: table_cards
+
+- type: entity
+  parent: RTFurniture64Base
+  id: RTShowcase
+  name: showcase
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    state: showcase
+    noRot: true
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Chairs (chairs.rsi — MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: ChairWood
+  id: RTChairWood
+  name: wooden chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: wood_chair
+
+- type: entity
+  parent: ChairWood
+  id: RTChairWoodPadded
+  name: padded wooden chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: wood_chair_padded
+
+- type: entity
+  parent: Chair
+  id: RTChairMetal
+  name: metal chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: metal_chair
+
+- type: entity
+  parent: Chair
+  id: RTChairMetalBlue
+  name: blue metal chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: metal_chair_blue
+
+- type: entity
+  parent: Chair
+  id: RTChairMetalRed
+  name: red metal chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: metal_chair_red
+
+- type: entity
+  parent: Chair
+  id: RTChairMetalFolding
+  name: folding metal chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: metal_chair_folding
+
+- type: entity
+  parent: Chair
+  id: RTChairPlastic
+  name: plastic chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: plastic_chair
+
+- type: entity
+  parent: Chair
+  id: RTChairRetro
+  name: retro chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: retro_chair
+
+- type: entity
+  parent: Chair
+  id: RTChairDiner
+  name: diner chair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: diner_chair
+
+- type: entity
+  parent: Chair
+  id: RTChairArmchair
+  name: armchair
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: armchair
+
+- type: entity
+  parent: StoolBase
+  id: RTBarstool
+  name: barstool
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/chairs.rsi
+    state: barstool
+
+# ── Beds (bedsandchairs.rsi — Interstate-80) ─────────────────────────────
+- type: entity
+  parent: Bed
+  id: RTBed
+  name: bed
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/bedsandchairs.rsi
+    state: bed
+
+- type: entity
+  parent: RTBed
+  id: RTBedDirty
+  suffix: RT, dirty
+  components:
+  - type: Sprite
+    state: bed_dirty
+
+- type: entity
+  parent: RTBed
+  id: RTBedWood
+  name: wooden bed
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bed_wood
+
+- type: entity
+  parent: RTBed
+  id: RTBedBunk
+  name: bunk bed
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bed_bunk
+
+- type: entity
+  parent: RTBed
+  id: RTBedWoodBunk
+  name: wooden bunk bed
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bed_wood_bunk
+
+- type: entity
+  parent: RTBed
+  id: RTMattress
+  name: mattress
+  suffix: RT
+  components:
+  - type: Sprite
+    state: mattress0
+
+- type: entity
+  parent: RTBed
+  id: RTBedroll
+  name: bedroll
+  suffix: RT
+  components:
+  - type: Sprite
+    state: bedroll_unrolled
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Shelves (bookshelf, np13_misc, 64x96_furniture — various sources)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTBookshelf1
+  name: bookshelf
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/bookshelf.rsi
+    state: bookshelf_1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTBookshelf1
+  id: RTBookshelf2
+  suffix: RT, alt
+  components:
+  - type: Sprite
+    state: bookshelf_2
+
+- type: entity
+  parent: RTBookshelf1
+  id: RTBookshelf3
+  suffix: RT, alt 2
+  components:
+  - type: Sprite
+    state: bookshelf_3
+
+- type: entity
+  parent: RTFurnitureBase
+  id: RTShelfWoodNP
+  name: wooden shelf
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/np13_misc.rsi
+    state: shelf_wood
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTShelfWoodNP
+  id: RTShelfMetalNP
+  name: metal shelf
+  suffix: RT
+  components:
+  - type: Sprite
+    state: shelf
+
+- type: entity
+  parent: RTShelfWoodNP
+  id: RTRackNP
+  name: rack
+  suffix: RT
+  components:
+  - type: Sprite
+    state: rack
+
+- type: entity
+  parent: RTShelfWoodNP
+  id: RTDresserNP
+  name: dresser
+  suffix: RT
+  components:
+  - type: Sprite
+    state: dresser
+
+# ── 64×96 shelves (MS13, Peptide90) ──────────────────────────────────────
+- type: entity
+  parent: RTFurnitureBase
+  id: RTShelf96Base
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/64x96_furniture.rsi
+    noRot: false
+    offset: 0.5, 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.45,1.5,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTShelf96Base
+  id: RTShelfWood96
+  name: wooden shelf
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: wood_shelf
+
+- type: entity
+  parent: RTShelf96Base
+  id: RTShelfWoodBig96
+  name: large wooden shelf
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: wood_shelf_big
+
+- type: entity
+  parent: RTShelf96Base
+  id: RTShelfMetal96
+  name: metal shelf
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: metal_shelf
+
+- type: entity
+  parent: RTShelf96Base
+  id: RTShelfShop96
+  name: shop shelf
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: shelf_shop
+
+- type: entity
+  parent: RTShelf96Base
+  id: RTStandWood96
+  name: wooden stand
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: stand_wood
+
+- type: entity
+  parent: RTShelf96Base
+  id: RTClothingRack96
+  name: clothing rack
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    state: clothing_rack
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Cooking (cooking.rsi — INFRARED_BARON for MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTCookingBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/cooking.rsi
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.25
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTCookingBase
+  id: RTStoveCooking
+  name: cooking stove
+  suffix: RT
+  components:
+  - type: Sprite
+    state: stove_cooking
+
+- type: entity
+  parent: RTCookingBase
+  id: RTPotbellyStove
+  name: potbelly stove
+  suffix: RT
+  components:
+  - type: Sprite
+    state: potbelly
+
+- type: entity
+  parent: RTCookingBase
+  id: RTBarrelGrill
+  name: barrel grill
+  suffix: RT
+  components:
+  - type: Sprite
+    state: barrelgrill
+
+- type: entity
+  parent: RTCookingBase
+  id: RTCampfire
+  name: campfire
+  suffix: RT
+  components:
+  - type: Sprite
+    state: campfire
+  - type: PointLight
+    radius: 4
+    energy: 1.2
+    color: "#E8B060"
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Rugs (rugs.rsi, rugs64x64.rsi — MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: BaseStructure
+  id: RTRugBase
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    netsync: false
+    drawdepth: FloorObjects
+  - type: Transform
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Clickable
+
+- type: entity
+  parent: RTRugBase
+  id: RTMatWelcome
+  name: welcome mat
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs.rsi
+    state: mat_welcome
+
+- type: entity
+  parent: RTRugBase
+  id: RTMatBlank
+  name: blank mat
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs.rsi
+    state: mat_blank
+
+- type: entity
+  parent: RTRugBase
+  id: RTRubberMat
+  name: rubber mat
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs.rsi
+    state: rubber_single
+
+- type: entity
+  parent: RTRugBase
+  id: RTRugFancy
+  name: fancy rug
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs64x64.rsi
+    state: rug_fancy
+
+- type: entity
+  parent: RTRugBase
+  id: RTRugRed
+  name: red rug
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs64x64.rsi
+    state: rug_red
+
+- type: entity
+  parent: RTRugBase
+  id: RTRugBlue
+  name: blue rug
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs64x64.rsi
+    state: rug_blue
+
+- type: entity
+  parent: RTRugBase
+  id: RTRugYellow
+  name: yellow rug
+  suffix: RT, 64
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/rugs64x64.rsi
+    state: rug_yellow
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Barricades (barricades.rsi + ms13_barricades.rsi — MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: BaseStructure
+  id: RTBarricadeBase
+  abstract: true
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _N14/_MS13/Structures/Furniture/barricades.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,-0.25"
+        density: 500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeSandbag
+  name: sandbag
+  suffix: RT
+  components:
+  - type: Sprite
+    state: sandbag_single
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeSandbagLine
+  name: sandbag line
+  suffix: RT
+  components:
+  - type: Sprite
+    state: sandbag_horizontal
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeWooden
+  name: wooden barricade
+  suffix: RT
+  components:
+  - type: Sprite
+    state: woodenbarricade
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeWoodenOld
+  name: old wooden barricade
+  suffix: RT
+  components:
+  - type: Sprite
+    state: woodenbarricade-old
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeIron
+  name: iron barricade
+  suffix: RT
+  components:
+  - type: Sprite
+    state: iron_barricade
+  - type: Damageable
+    damageModifierSet: Metallic
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeBarbedWire
+  name: barbed wire
+  suffix: RT
+  components:
+  - type: Sprite
+    state: barbedwire_single
+
+- type: entity
+  parent: RTBarricadeBase
+  id: RTBarricadeSandbagMS13Black
+  name: black sandbag
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/ms13_barricades.rsi
+    state: black
+
+- type: entity
+  parent: RTBarricadeSandbagMS13Black
+  id: RTBarricadeSandbagMS13Green
+  name: green sandbag
+  suffix: RT
+  components:
+  - type: Sprite
+    state: green
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Plant pots (plantpots.rsi — TGStation, modified by Peptide90)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTPlantPot1
+  name: plant pot
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/plantpots.rsi
+    state: pot-1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.15
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTPlantPot1
+  id: RTPlantPot2
+  suffix: RT, alt
+  components:
+  - type: Sprite
+    state: pot-2
+
+- type: entity
+  parent: RTPlantPot1
+  id: RTPlantPot3
+  suffix: RT, alt 2
+  components:
+  - type: Sprite
+    state: pot-3
+
+- type: entity
+  parent: RTPlantPot1
+  id: RTPlantPot4
+  suffix: RT, alt 3
+  components:
+  - type: Sprite
+    state: pot-4
+
+- type: entity
+  parent: RTPlantPot1
+  id: RTPlantPot5
+  suffix: RT, alt 4
+  components:
+  - type: Sprite
+    state: pot-5
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Junk furniture (junk.rsi — Interstate-80)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTJunkBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/junk.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkDresser
+  name: junk dresser
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_dresser
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkCabinet
+  name: junk cabinet
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_cabinet
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkLocker
+  name: junk locker
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_locker
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkBed1
+  name: junk bed
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_bed1
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkBed2
+  name: junk bed
+  suffix: RT, alt
+  components:
+  - type: Sprite
+    state: junk_bed2
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkTable
+  name: junk table
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_table
+  - type: PlaceableSurface
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkBench
+  name: junk bench
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_bench
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkToilet
+  name: junk toilet
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_toilet
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkSink
+  name: junk sink
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_sink
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkShower
+  name: junk shower
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_shower
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkMirror
+  name: junk mirror
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_mirror
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTJunkBase
+  id: RTJunkClock
+  name: junk clock
+  suffix: RT
+  components:
+  - type: Sprite
+    state: junk_clock
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Store furniture (delistand, fruitstand — MS13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTDeliStand
+  name: deli stand
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Store_Furniture/delistand.rsi
+    state: deli_stand
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTFurnitureBase
+  id: RTFruitStand
+  name: fruit stand
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Store_Furniture/fruitstand.rsi
+    state: fruitstand_empty
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Street furniture (streetsigns, streetlights — MS13 + N14)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTStreetSignBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Street_Furniture/streetsigns.rsi
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.15
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTStreetSignBase
+  id: RTStreetSignStop
+  name: stop sign
+  suffix: RT
+  components:
+  - type: Sprite
+    state: stop
+
+- type: entity
+  parent: RTStreetSignBase
+  id: RTStreetSignDirection
+  name: direction sign
+  suffix: RT
+  components:
+  - type: Sprite
+    state: direction
+
+- type: entity
+  parent: RTStreetSignBase
+  id: RTStreetSignSpeed
+  name: speed sign
+  suffix: RT
+  components:
+  - type: Sprite
+    state: speed
+
+- type: entity
+  parent: RTStreetSignBase
+  id: RTStreetSignWarning
+  name: warning sign
+  suffix: RT
+  components:
+  - type: Sprite
+    state: warnings
+
+- type: entity
+  parent: RTFurnitureBase
+  id: RTPowerPole
+  name: power pole
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Street_Furniture/powerpole.rsi
+    state: powerpole1
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTFurnitureBase
+  id: RTStreetLight
+  name: street light
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
+    state: on
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: PointLight
+    radius: 8
+    energy: 2.0
+    color: "#FFE4B5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.15
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  NP13 Misc (np13_misc.rsi — Nukapop-13)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTFurnitureBase
+  id: RTGrandClock
+  name: grandfather clock
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/np13_misc.rsi
+    state: grand_clock
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: RTFurnitureBase
+  id: RTPunchingBag
+  name: punching bag
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Furniture/np13_misc.rsi
+    state: punchingbag
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer

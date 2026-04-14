@@ -1,0 +1,758 @@
+# RedTruce Doors - MS13 / N14 sprites via Nuclear-14
+# License: CC-BY-NC-SA-3.0
+# FalloutDoors: DesertRose (wooddoor, housedoor, metaldoor, celldoor, irondoor)
+# FalloutDoors: Nukapop-13 (tentcloth, spikedgate)
+# TallDoors: MS13, modified for SS14 by Peptide (wood, fence, metal variants)
+# TallDoors: INFRARED_BARON for MS13 (vaultdoor)
+# chaingate.rsi: Fallout-13, modified by Peptide90
+# Curtains: Interstate-80, modified by Peptide90
+# RollerDoors: Peptide90 for Nuclear14
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Abstract bases
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  id: RTBaseDoor
+  parent: BaseStructure
+  name: door
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/wooddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Appearance
+  - type: Airtight
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Occluder
+  - type: BlockWeather
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTBaseDoorWood
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  FalloutDoors — Wooden (32×32)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodMakeshift
+  name: makeshift door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/wooddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodHouse
+  name: wooden house door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/housedoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodHousePainted
+  name: painted wooden door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/housedoorpainted.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: paint
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          paint: Rainbow
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodHouseClean
+  name: clean wooden door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/housecleandoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodRoom
+  name: room door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/roomdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodRoomDamaged
+  name: damaged room door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/room_ddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodInterior
+  name: interior door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/interiordoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodStore
+  name: store door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/storedoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodStoreDirty
+  name: dirty store door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/dirtystoredoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodStoreBroken
+  name: broken store door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/brokenstoredoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorWoodSecure
+  name: secure wooden door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/securedoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  FalloutDoors — Metal (32×32)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorMetalReinforced
+  name: reinforced metal door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/metaldoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorMetalIron
+  name: iron door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/irondoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorCellMetal
+  name: cell door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/celldoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: RTDoorCellMetal
+  id: RTDoorMetalBar
+  name: barred door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/barreddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorBunker
+  name: bunker door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/bunkerdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorSecureSteel
+  name: secure steel door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/securesteeldoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  FalloutDoors — Glass (32×32)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorGlass
+  name: glass door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/glassdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+
+- type: entity
+  parent: RTDoorGlass
+  id: RTDoorGlassDirty
+  name: dirty glass door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/dirtyglassdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorGlass
+  id: RTDoorGlassBroken
+  name: broken glass door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/brokenglassdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorGlass
+  id: RTDoorGlassBunker
+  name: glass bunker door
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/glassbunkerdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  FalloutDoors — Tent / Gate
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorTentCloth
+  name: cloth tent flap
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/tentcloth.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Airtight
+    airBlocked: false
+
+- type: entity
+  parent: RTDoorTentCloth
+  id: RTDoorTentFlap
+  name: tent flap
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/tentflap.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorTentCloth
+  id: RTDoorTentLeather
+  name: leather tent flap
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/tentleather.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorSpikedGate
+  name: spiked gate
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/FalloutDoors/spikedgate.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Tall Doors (64×96 / 32×54)
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: BaseStructure
+  id: RTBaseTallDoor
+  name: door
+  abstract: true
+  suffix: RT, tall
+  components:
+  - type: InteractionOutline
+  - type: AnimationPlayer
+  - type: Appearance
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metalblue.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0
+    closeTimeTwo: 0
+    openTimeOne: 0
+    openTimeTwo: 0
+    closedDrawDepth: Mobs
+    openDrawDepth: Mobs
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: NavMapDoor
+  - type: Occluder
+  - type: BlockWeather
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+
+- type: entity
+  parent: RTBaseTallDoor
+  id: RTDoorMetalBlueTall
+  name: blue metal door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metalblue.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseTallDoor
+  id: RTDoorMetalBlueAltTall
+  name: blue metal door
+  suffix: RT, tall, alt
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metalbluealt.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseTallDoor
+  id: RTDoorMetalRedTall
+  name: red metal door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metalred.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseTallDoor
+  id: RTDoorMetalBlueWindowTall
+  name: windowed metal door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metalbluewindow.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: RTDoorMetalBlueWindowTall
+  id: RTDoorMetalGrateTall
+  name: metal grate door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metal_grate.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorMetalBlueWindowTall
+  id: RTDoorMetalBarTall
+  name: metal bar door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/metal_bar.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorMetalBlueWindowTall
+  id: RTDoorFenceTall
+  name: fence gate
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/fence.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorFenceTall
+  id: RTDoorFenceBarbedTall
+  name: barbed fence gate
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/fence_barbed.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseTallDoor
+  id: RTDoorWoodTall
+  name: wooden door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/wood.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: RTDoorWoodTall
+  id: RTDoorWoodBlueTall
+  name: blue wooden door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/woodblue.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorWoodTall
+  id: RTDoorWoodGreenTall
+  name: green wooden door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/woodgreen.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorWoodTall
+  id: RTDoorWoodRedTall
+  name: red wooden door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/woodred.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTDoorWoodTall
+  id: RTDoorWoodWhiteTall
+  name: white wooden door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/woodwhite.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# Cell doors (tall, 32×54 — thin bottom fixture)
+- type: entity
+  parent: RTBaseTallDoor
+  id: RTDoorCellTall
+  name: cell door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/cell.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.6,0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+        density: 1000
+
+- type: entity
+  parent: RTDoorCellTall
+  id: RTDoorCellRustTall
+  name: rusty cell door
+  suffix: RT, tall
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/TallDoors/cellrust.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Miscellaneous doors
+# ══════════════════════════════════════════════════════════════════════════════
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorChainGate
+  name: chain gate
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/chaingate.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: RTBaseDoorWood
+  id: RTDoorCurtainJunk
+  name: junk curtain
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/Curtains/junkcurtain.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Airtight
+    airBlocked: false
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorRollerGarage
+  name: garage shutter
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/RollerDoors/garageshutter.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RTBaseDoor
+  id: RTDoorRollerFramed
+  name: framed shutter
+  suffix: RT
+  components:
+  - type: Sprite
+    sprite: _N14/_MS13/Structures/Doors/RollerDoors/framedshutter.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
