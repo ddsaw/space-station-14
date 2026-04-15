@@ -35,6 +35,7 @@ rpg-skill-cat-heavylabor = Heavy labor
 rpg-skill-cat-fortitude = Fortitude
 rpg-skill-cat-endurance = Endurance
 rpg-skill-cat-resolve = Resolve
+rpg-skill-cat-security = Security
 rpg-skill-cat-composure = Composure
 
 rpg-skill-spec-swords = Swords
@@ -77,4 +78,5 @@ rpg-skill-spec-zerogadaptation = Zero-G adaptation
 rpg-skill-spec-morale = Morale
 rpg-skill-spec-stresscontrol = Stress control
 rpg-skill-spec-deceptionsense = Sense deception
+rpg-skill-spec-lockpicking = Lockpicking
 rpg-skill-spec-interrogation = Interrogation

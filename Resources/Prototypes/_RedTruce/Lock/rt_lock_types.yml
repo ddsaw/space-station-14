@@ -1,0 +1,23 @@
+- type: rtLockType
+  id: RTTavernLock
+  name: rt-lock-type-tavern
+
+- type: rtLockType
+  id: RTHouseLock
+  name: rt-lock-type-house
+
+- type: rtLockType
+  id: RTCellLock
+  name: rt-lock-type-cell
+
+- type: rtLockType
+  id: RTBarracksLock
+  name: rt-lock-type-barracks
+
+- type: rtLockType
+  id: RTTreasuryLock
+  name: rt-lock-type-treasury
+
+- type: rtLockType
+  id: RTArmoryLock
+  name: rt-lock-type-armory

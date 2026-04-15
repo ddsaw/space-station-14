@@ -1,0 +1,221 @@
+# ═══════════════════════════════════════════════════════════════
+#  RT Lockable Entity Storage (lockers, chests, crates)
+#  These use EntityStorageComponent — click to open/close,
+#  LockComponent blocks opening when locked.
+# ═══════════════════════════════════════════════════════════════
+
+- type: entity
+  id: RTBaseLockerLockable
+  parent: ClosetBase
+  name: locker
+  abstract: true
+  components:
+  - type: Lock
+    locked: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    showLockVerbs: false
+    unlockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+    lockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+  - type: RTLock
+    lockType: RTHouseLock
+    difficulty: 3
+
+- type: entity
+  id: RTLockerWood
+  parent: RTBaseLockerLockable
+  name: wooden locker
+  description: A simple wooden storage locker.
+  suffix: RT, lockable
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/closet.rsi
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: RTLockerMetal
+  parent: RTBaseLockerLockable
+  name: metal locker
+  description: A sturdy metal locker with a lock.
+  suffix: RT, lockable
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/closet.rsi
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+
+# ═══════════════════════════════════════════════════════════════
+#  RT Lockable Crates
+# ═══════════════════════════════════════════════════════════════
+
+- type: entity
+  id: RTBaseCrateLockable
+  parent: CrateGeneric
+  name: crate
+  abstract: true
+  components:
+  - type: Lock
+    locked: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    showLockVerbs: false
+    unlockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+    lockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+  - type: RTLock
+    lockType: RTHouseLock
+    difficulty: 3
+
+- type: entity
+  id: RTCrateWood
+  parent: RTBaseCrateLockable
+  name: wooden crate
+  description: A rough wooden crate with a hasp for a lock.
+  suffix: RT, lockable
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: RTChestTreasure
+  parent: RTBaseCrateLockable
+  name: treasure chest
+  description: A heavy iron-banded chest. What's inside?
+  suffix: RT, lockable
+  components:
+  - type: RTLock
+    lockType: RTTreasuryLock
+    difficulty: 5
+
+# ═══════════════════════════════════════════════════════════════
+#  RT Lockable Grid Storage (shelves, cabinets)
+#  These use StorageComponent — opens a UI grid inventory.
+#  Requires LockedStorage alongside Lock to gate the UI.
+# ═══════════════════════════════════════════════════════════════
+
+- type: entity
+  id: RTBaseCabinetLockable
+  parent: BaseStructure
+  name: cabinet
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Lock
+    locked: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    showLockVerbs: false
+    unlockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+    lockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+  - type: LockedStorage
+  - type: RTLock
+    lockType: RTHouseLock
+    difficulty: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: RTCabinetWood
+  parent: RTBaseCabinetLockable
+  name: wooden cabinet
+  description: A wooden cabinet with a small lock.
+  suffix: RT, lockable
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/cabinets.rsi
+    state: chestdrawer
+
+- type: entity
+  id: RTCabinetArmory
+  parent: RTBaseCabinetLockable
+  name: armory cabinet
+  description: A reinforced cabinet for storing weapons and armor.
+  suffix: RT, lockable, armory
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/cabinets.rsi
+    state: tallcabinet
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: RTLock
+    lockType: RTArmoryLock
+    difficulty: 5

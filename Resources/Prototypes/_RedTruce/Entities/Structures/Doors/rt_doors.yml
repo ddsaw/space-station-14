@@ -67,6 +67,23 @@
         acts: ["Destruction"]
   - type: Occluder
   - type: BlockWeather
+  # RT Lock system — all RT doors are lockable.
+  # Unlocked by default; mappers set locked: true + lockType per-instance via VarEdit.
+  # lockOnClick/unlockOnClick are false so clicking opens/closes the door normally.
+  # Use a key (AfterInteract) or lockpick (AfterInteract + skill check) to toggle.
+  - type: Lock
+    locked: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    showLockVerbs: false
+    unlockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+    lockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+  - type: RTLock
+    lockType: RTHouseLock
+    difficulty: 3
 
 - type: entity
   parent: RTBaseDoor
@@ -481,6 +498,20 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+  # RT Lock system (same as RTBaseDoor)
+  - type: Lock
+    locked: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    showLockVerbs: false
+    unlockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+    lockingSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+  - type: RTLock
+    lockType: RTHouseLock
+    difficulty: 3
 
 - type: entity
   parent: RTBaseTallDoor

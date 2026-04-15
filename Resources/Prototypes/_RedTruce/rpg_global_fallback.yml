@@ -32,6 +32,9 @@
     RTAcrobatics:
       baseline: 0
       current: 0
+    RTSecurity:
+      baseline: 0
+      current: 0
     RTScience:
       baseline: 0
       current: 0
@@ -103,6 +106,9 @@
       baseline: 0
       current: 0
     RTDodging:
+      baseline: 0
+      current: 0
+    RTLockpicking:
       baseline: 0
       current: 0
     RTXenobiology:

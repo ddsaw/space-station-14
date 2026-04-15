@@ -1,0 +1,207 @@
+# ═══════════════════════════════════════════════════════════════
+#  Base key
+# ═══════════════════════════════════════════════════════════════
+- type: entity
+  id: RTBaseKey
+  parent: BaseItem
+  name: key
+  description: A metal key.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_iron
+  - type: Item
+    size: Tiny
+  - type: RTKey
+    lockTypes: []
+
+# ═══════════════════════════════════════════════════════════════
+#  Typed keys
+# ═══════════════════════════════════════════════════════════════
+- type: entity
+  id: RTTavernKey
+  parent: RTBaseKey
+  name: tavern key
+  description: A key for tavern doors.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_copper
+  - type: RTKey
+    lockTypes:
+    - RTTavernLock
+
+- type: entity
+  id: RTHouseKey
+  parent: RTBaseKey
+  name: house key
+  description: A key for house doors.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_iron
+  - type: RTKey
+    lockTypes:
+    - RTHouseLock
+
+- type: entity
+  id: RTCellKey
+  parent: RTBaseKey
+  name: cell key
+  description: A heavy key for cell doors.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_gold
+  - type: RTKey
+    lockTypes:
+    - RTCellLock
+
+- type: entity
+  id: RTBarracksKey
+  parent: RTBaseKey
+  name: barracks key
+  description: A key for barracks doors.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_iron
+  - type: RTKey
+    lockTypes:
+    - RTBarracksLock
+
+- type: entity
+  id: RTTreasuryKey
+  parent: RTBaseKey
+  name: treasury key
+  description: An ornate key for the treasury.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_gold
+  - type: RTKey
+    lockTypes:
+    - RTTreasuryLock
+
+- type: entity
+  id: RTArmoryKey
+  parent: RTBaseKey
+  name: armory key
+  description: A sturdy key for the armory.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_mithril
+  - type: RTKey
+    lockTypes:
+    - RTArmoryLock
+
+- type: entity
+  id: RTMasterKey
+  parent: RTBaseKey
+  name: master key
+  description: A master key that fits many locks.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: key_gold
+  - type: RTKey
+    lockTypes:
+    - RTTavernLock
+    - RTHouseLock
+    - RTCellLock
+    - RTBarracksLock
+
+# ═══════════════════════════════════════════════════════════════
+#  Keyring
+# ═══════════════════════════════════════════════════════════════
+- type: entity
+  id: RTKeyRing
+  parent: BaseItem
+  name: keyring
+  description: A ring for holding keys.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: keyring
+  - type: Item
+    size: Small
+  - type: RTKeyRing
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,3,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+# ═══════════════════════════════════════════════════════════════
+#  Lockpicks
+# ═══════════════════════════════════════════════════════════════
+- type: entity
+  id: RTBaseLockpick
+  parent: BaseItem
+  name: lockpick
+  description: A thin metal lockpick.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: lockpick_iron
+  - type: Item
+    size: Tiny
+  - type: RTLockpick
+    maxDurability: 5
+    currentDurability: 5
+    pickTime: 5
+    successSound:
+      path: /Audio/_CP14/Items/lockpick_use.ogg
+    failSound:
+      path: /Audio/_CP14/Items/lockpick_fail.ogg
+    breakSound:
+      path: /Audio/_CP14/Items/lockpick_fail.ogg
+
+- type: entity
+  id: RTLockpickIron
+  parent: RTBaseLockpick
+  name: iron lockpick
+  description: A simple iron lockpick. Fragile.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: lockpick_iron
+  - type: RTLockpick
+    maxDurability: 5
+    currentDurability: 5
+
+- type: entity
+  id: RTLockpickMithril
+  parent: RTBaseLockpick
+  name: mithril lockpick
+  description: A mithril lockpick. Much more durable.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: lockpick_mithril
+  - type: RTLockpick
+    maxDurability: 15
+    currentDurability: 15
+
+- type: entity
+  id: RTLockpickSkeleton
+  parent: RTBaseLockpick
+  name: skeleton lockpick
+  description: A masterwork skeleton lockpick. Nearly unbreakable.
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/keys.rsi
+    state: lockpick_skeleton
+  - type: RTLockpick
+    maxDurability: 50
+    currentDurability: 50

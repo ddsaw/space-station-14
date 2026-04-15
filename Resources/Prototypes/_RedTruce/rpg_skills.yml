@@ -103,6 +103,18 @@
 
 # Linked Mind
 - type: rtSkillCategory
+  id: RTSecurity
+  ordering: 19
+  nameLocId: rpg-skill-cat-security
+  linkedStat: RTMind
+
+- type: rtSkillSpecialization
+  id: RTLockpicking
+  ordering: 0
+  nameLocId: rpg-skill-spec-lockpicking
+  category: RTSecurity
+
+- type: rtSkillCategory
   id: RTScience
   ordering: 20
   nameLocId: rpg-skill-cat-science
