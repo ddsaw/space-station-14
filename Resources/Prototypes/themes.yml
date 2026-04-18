@@ -101,6 +101,23 @@
     _itemstatus_content_margin_left: "#06060604"
     _itemstatus_patch_margin: "#07060404"
 - type: uiTheme
+  id: SS14FantasyTheme
+  path: /Textures/Interface/Fantasy/
+  colors:
+    whiteText: "#FFF5EE"
+    slotSelectedGold: "#c8aa78"
+    slotColor: "#1a1410"
+    slotOutline: "#6b4c30"
+    slotText: "#c8aa78"
+    nanoGold: "#c8aa78"
+    goodGreenFore: "#3a6b3a"
+    concerningOrangeFore: "#A5762F"
+    dangerousRedFore: "#8b2020"
+    disabledFore: "#4a3a2a"
+    _itemstatus_content_margin_right: "#06060404"
+    _itemstatus_content_margin_left: "#04060604"
+    _itemstatus_patch_margin: "#07060404"
+- type: uiTheme
   id: SS14AshenTheme
   path: /Textures/Interface/Ashen/
   colors:

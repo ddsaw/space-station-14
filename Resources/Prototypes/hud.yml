@@ -35,6 +35,12 @@
   order: 1
 
 - type: hudTheme
+  id: SS14FantasyTheme
+  name: ui-options-hud-theme-fantasy
+  path: Fantasy
+  order: 7
+
+- type: hudTheme
   id: SS14AshenTheme
   name: ui-options-hud-theme-ashen
   path: Ashen

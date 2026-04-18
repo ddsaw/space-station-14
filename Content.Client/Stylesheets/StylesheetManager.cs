@@ -19,6 +19,7 @@ namespace Content.Client.Stylesheets
             _resCache = default!; // TODO: REMOVE (obsolete; used to construct StyleNano/StyleSpace)
 
         public Stylesheet SheetNanotrasen { get; private set; } = default!;
+        public Stylesheet SheetFantasy { get; private set; } = default!;
         public Stylesheet SheetSystem { get; private set; } = default!;
 
         [Obsolete("Update to use SheetNanotrasen instead")]
@@ -48,11 +49,12 @@ namespace Content.Client.Stylesheets
 
             Stylesheets = new Dictionary<string, Stylesheet>();
             SheetNanotrasen = Init(new NanotrasenStylesheet(new BaseStylesheet.NoConfig(), this));
+            SheetFantasy = Init(new FantasyStylesheet(new BaseStylesheet.NoConfig(), this));
             SheetSystem = Init(new SystemStylesheet(new BaseStylesheet.NoConfig(), this));
             SheetNano = new StyleNano(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
             SheetSpace = new StyleSpace(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
 
-            _userInterfaceManager.Stylesheet = SheetNanotrasen;
+            _userInterfaceManager.Stylesheet = SheetFantasy;
 
             // warn about unused sheetlets
             if (UnusedSheetlets.Count > 0)
