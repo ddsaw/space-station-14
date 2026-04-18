@@ -34,6 +34,15 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     public Color StrokeColor = Color.Black.WithAlpha(0.5f);
     public float Scale = 0.6f;  // 1 is a little big
 
+    /// <summary>
+    /// External gate driven by <see cref="Content.Client.Entry.EntryPoint"/>.
+    /// When false, skip drawing entirely so we don't composite on top of the content
+    /// cursor (e.g. fantasy gauntlet) when the pointer is hovering HUD widgets.
+    /// Kept in lock-step with the cursor-swap decision so there is never a frame where
+    /// both the gauntlet and the sight are visible simultaneously.
+    /// </summary>
+    public bool ShouldDrawSight = true;
+
     public CombatModeIndicatorsOverlay(IInputManager input, IEntityManager entMan,
             IEyeManager eye, CombatModeSystem combatSys, HandsSystem hands)
     {
@@ -55,6 +64,9 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         if (!_combat.IsInCombatMode())
+            return false;
+
+        if (!ShouldDrawSight)
             return false;
 
         return base.BeforeDraw(in args);

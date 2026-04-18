@@ -17,6 +17,7 @@ using Content.Client.Playtime;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
+using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Administration.Logs;

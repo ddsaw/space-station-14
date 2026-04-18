@@ -1,6 +1,7 @@
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
+using Content.Client.CombatMode;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.FeedbackPopup;
@@ -22,6 +23,7 @@ using Content.Client.Screenshot;
 using Content.Client.Singularity;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
+using Content.Client.UserInterface.Controls;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Ame.Components;
@@ -34,12 +36,17 @@ using Robust.Client.Input;
 using Robust.Client.Replays.Loading;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Content.Client.Entry
 {
@@ -59,6 +66,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ChangelogManager _changelogManager = default!;
         [Dependency] private readonly ViewportManager _viewportManager = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private readonly IClyde _clyde = default!;
         [Dependency] private readonly IInputManager _inputManager = default!;
         [Dependency] private readonly IOverlayManager _overlayManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
@@ -79,6 +87,14 @@ namespace Content.Client.Entry
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
         [Dependency] private readonly ClientFeedbackManager _feedbackManager = null!;
+
+        /// <summary>
+        ///     Fantasy gauntlet pointer; also assigned to <see cref="IUserInterfaceManager.WorldCursor"/>.
+        /// </summary>
+        private ICursor? _fantasyGauntletPointerCursor;
+        private ICursor? _blankCursor;
+        private OwnedTexture? _fantasyGauntletTexture;
+        private GauntletHudCursorControl? _gauntletHudControl;
 
         public override void PreInit()
         {
@@ -175,6 +191,8 @@ namespace Content.Client.Entry
             _titleWindowManager.Initialize();
             _feedbackManager.Initialize();
 
+            TryInstallFantasyGauntletPointerCursor();
+
             _baseClient.RunLevelChanged += (_, args) =>
             {
                 if (args.NewLevel == ClientRunLevel.Initialize)
@@ -226,6 +244,55 @@ namespace Content.Client.Entry
 
         public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)
         {
+            // Runs after UI manager's UpdateActiveCursor. For every frame that a hovered/focused control
+            // would otherwise show the default arrow cursor, deterministically pick between the gauntlet
+            // and the standard arrow so state does not get stuck when combat mode toggles.
+            // Non-arrow shapes (IBeam, Hand, resize, Crosshair, custom cursors) are left untouched so the
+            // UI manager's own SetCursor call stands.
+            if (level == ModUpdateLevel.FramePostEngine
+                && _fantasyGauntletPointerCursor != null)
+            {
+                // Core idea: never swap the OS cursor mid-combat. Entering combat swaps
+                // it to blank once; leaving combat swaps it back to the gauntlet once.
+                // Any gauntlet visibility inside combat (over HUD widgets) is drawn as
+                // an in-game screen overlay, in lock-step with the combat sight overlay.
+                // This avoids a one-frame SDL cursor-transition artefact ("larger
+                // discoloured gauntlet") that occurred on hover-driven cursor swaps.
+                var target = _userInterfaceManager.ControlFocused ?? _userInterfaceManager.CurrentlyHovered;
+                var inCombat = IsInCombatMode();
+                var overViewport = target != null && IsUnderMainGameViewport(target);
+
+                _overlayManager.TryGetOverlay(out CombatModeIndicatorsOverlay? combatOverlay);
+
+                if (inCombat && _blankCursor != null)
+                {
+                    _clyde.SetCursor(_blankCursor);
+
+                    var overHud = target != null && !overViewport;
+
+                    if (combatOverlay != null)
+                        combatOverlay.ShouldDrawSight = !overHud;
+
+                    if (_gauntletHudControl != null)
+                        _gauntletHudControl.ShouldDraw = overHud;
+                }
+                else
+                {
+                    if (target != null
+                        && target.CustomCursorShape == null
+                        && target.DefaultCursorShape == Control.CursorShape.Arrow)
+                    {
+                        _clyde.SetCursor(_fantasyGauntletPointerCursor);
+                    }
+
+                    if (combatOverlay != null)
+                        combatOverlay.ShouldDrawSight = false;
+
+                    if (_gauntletHudControl != null)
+                        _gauntletHudControl.ShouldDraw = false;
+                }
+            }
+
             if (level == ModUpdateLevel.FramePreEngine)
             {
                 _debugMonitorManager.FrameUpdate();
@@ -240,5 +307,81 @@ namespace Content.Client.Entry
                 }
             }
         }
+
+        public override void Shutdown()
+        {
+            _userInterfaceManager.WorldCursor = null;
+            if (_gauntletHudControl != null)
+            {
+                _gauntletHudControl.Orphan();
+                _gauntletHudControl = null;
+            }
+            _fantasyGauntletTexture?.Dispose();
+            _fantasyGauntletTexture = null;
+            _fantasyGauntletPointerCursor?.Dispose();
+            _fantasyGauntletPointerCursor = null;
+            _blankCursor?.Dispose();
+            _blankCursor = null;
+            base.Shutdown();
+        }
+
+        private void TryInstallFantasyGauntletPointerCursor()
+        {
+            var path = new ResPath("/Textures/Interface/Fantasy/cursor_gauntlet.png");
+            if (!_resourceManager.ContentFileExists(path))
+            {
+                _logManager.GetSawmill("entry").Warning("Fantasy pointer cursor texture missing at {0}", path);
+                return;
+            }
+
+            Image<Rgba32> image;
+            using (var stream = _resourceManager.ContentFileRead(path))
+            {
+                image = Image.Load<Rgba32>(stream);
+            }
+
+            using (image)
+            {
+                // Hotspot at the fingertip (top-left of the art; matches the gauntlet “point” pose).
+                _fantasyGauntletPointerCursor = _clyde.CreateCursor(image, new Vector2i(0, 0));
+                _fantasyGauntletTexture = _clyde.LoadTextureFromImage(image, "fantasy_gauntlet_cursor");
+            }
+
+            _userInterfaceManager.WorldCursor = _fantasyGauntletPointerCursor;
+
+            // Engine has no public "hide OS cursor" API, so fake it with a 1x1 fully
+            // transparent cursor. Used as the sole OS cursor for the duration of combat
+            // mode so we never have to SDL-swap the cursor while hovering between the
+            // viewport and HUD widgets.
+            using var blank = new Image<Rgba32>(1, 1, new Rgba32(0, 0, 0, 0));
+            _blankCursor = _clyde.CreateCursor(blank, new Vector2i(0, 0));
+
+            if (_fantasyGauntletTexture != null)
+            {
+                _gauntletHudControl = new GauntletHudCursorControl(
+                    _inputManager,
+                    _fantasyGauntletTexture);
+                LayoutContainer.SetAnchorPreset(_gauntletHudControl, LayoutContainer.LayoutPreset.Wide);
+                _userInterfaceManager.PopupRoot.AddChild(_gauntletHudControl);
+            }
+        }
+
+        private bool IsInCombatMode()
+        {
+            return _entitySystemManager.TryGetEntitySystem(out CombatModeSystem? combatMode)
+                   && combatMode.IsInCombatMode();
+        }
+
+        private static bool IsUnderMainGameViewport(Control control)
+        {
+            for (var c = control; c != null; c = c.Parent)
+            {
+                if (c is MainViewport or ScalingViewport)
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }

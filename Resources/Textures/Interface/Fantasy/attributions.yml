@@ -49,3 +49,9 @@
   license: "CC0-1.0"
   copyright: "Fantasy UI Borders (1.0) by Kenney (https://www.kenney.nl). Edited and arranged for Space Station 14 Fantasy UI theme."
   source: "https://www.kenney.nl/assets/fantasy-ui-borders"
+
+# Gauntlet cursor — https://opengameart.org/content/gauntlet-cursor (CC0)
+- files: ["cursor_gauntlet.png"]
+  license: "CC0-1.0"
+  copyright: "Medieval gauntlet pointer cursors by itsmars, edited from yd's \"Pointers: part 5\" (https://opengameart.org/content/pointers-part-5)."
+  source: "https://opengameart.org/content/gauntlet-cursor"
