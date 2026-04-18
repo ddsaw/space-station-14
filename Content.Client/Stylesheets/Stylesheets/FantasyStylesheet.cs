@@ -71,6 +71,7 @@ public partial class FantasyStylesheet : CommonStylesheet
             GetMarginOverrideRules(),
             GetScrollbarOverrideRules(),
             GetChatOverrideRules(),
+            GetSpeechBubbleOverrideRules(),
             GetContextMenuOverrideRules(),
         };
 
@@ -254,6 +255,30 @@ public partial class FantasyStylesheet : CommonStylesheet
             Element<OutputPanel>()
                 .Class(SeparatedChatGameScreen.StyleClassChatOutput)
                 .Panel(chatOutputBg),
+        ];
+    }
+
+    /// <summary>
+    /// In-world speech bubbles reuse tooltip/whisper panel textures; Fantasy versions read as solid boxes.
+    /// Border-only <c>chat_border.png</c> matches the intended transparent look over the viewport.
+    /// </summary>
+    private StyleRule[] GetSpeechBubbleOverrideRules()
+    {
+        var speechBorder = MakeBox("chat_border.png", PanelMargin005);
+        speechBorder.SetContentMarginOverride(StyleBox.Margin.Horizontal, 7);
+        speechBorder.SetContentMarginOverride(StyleBox.Margin.Vertical, 4);
+
+        return
+        [
+            Element<PanelContainer>()
+                .Class("speechBox", "sayBox")
+                .Panel(speechBorder),
+            Element<PanelContainer>()
+                .Class("speechBox", "whisperBox")
+                .Panel(speechBorder),
+            Element<PanelContainer>()
+                .Class("speechBox", "emoteBox")
+                .Panel(speechBorder),
         ];
     }
 
